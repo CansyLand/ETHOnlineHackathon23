@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 // Needed if the contract must own the table
 import "@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol";
 
-contract Starter is ERC721Holder {
+contract Tableland is ERC721Holder {
   // The table token ID, assigned upon `TablelandTables` minting a table
   uint256 private _tableId;
 

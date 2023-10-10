@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.19;
+pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
@@ -7,19 +7,21 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
 
-contract LocalApes is 
+// Soulbound
+
+contract Character is 
 	ERC721, 
 	ERC721URIStorage, 
 	Ownable {
     uint256 private _nextTokenId;
 
     constructor(address initialOwner)
-        ERC721("LocalApes", "LA")
+        ERC721("Character", "CA")
         Ownable(initialOwner)
     {}
 
     function _baseURI() internal pure override returns (string memory) {
-        return "https://myNFTPicture.com/";
+        return "https://boredapeyachtclub.com/api/mutants/";
     }
 
     function safeMint(address to, string memory uri) public onlyOwner {
