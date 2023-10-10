@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.19;
 
 // Useful for debugging. Remove when deploying to a live network.
 import "hardhat/console.sol";
@@ -15,7 +15,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract YourContract is Ownable {
 	// State Variables
 	address public immutable contractOwner;
-	string public greeting = "Building! Unstoppable! Apps!!!";
+	string public greeting = "Building Unstoppable Apps!!!";
 	bool public premium = false;
 	uint256 public totalCounter = 0;
 	mapping(address => uint) public userGreetingCounter;

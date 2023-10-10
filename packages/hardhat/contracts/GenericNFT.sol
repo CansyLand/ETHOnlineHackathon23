@@ -7,14 +7,14 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
 
-contract LocalApes is 
+contract GenericNFT is 
 	ERC721, 
 	ERC721URIStorage, 
 	Ownable {
     uint256 private _nextTokenId;
 
     constructor(address initialOwner)
-        ERC721("LocalApes", "LA")
+        ERC721("GenericNFT", "GN")
         Ownable(initialOwner)
     {}
 

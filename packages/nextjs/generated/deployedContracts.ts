@@ -5,8 +5,33 @@ const contracts = {
       name: "localhost",
       contracts: {
         ERC6551Account: {
-          address: "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853",
+          address: "0x4631BCAbD6dF18D94796344963cB60d44a4136b6",
           abi: [
+            {
+              anonymous: false,
+              inputs: [
+                {
+                  indexed: true,
+                  internalType: "address",
+                  name: "greetingSetter",
+                  type: "address",
+                },
+                {
+                  indexed: false,
+                  internalType: "string",
+                  name: "newGreeting",
+                  type: "string",
+                },
+                {
+                  indexed: false,
+                  internalType: "uint256",
+                  name: "value",
+                  type: "uint256",
+                },
+              ],
+              name: "GreetingChange",
+              type: "event",
+            },
             {
               inputs: [
                 {
@@ -39,6 +64,19 @@ const contracts = {
                 },
               ],
               stateMutability: "payable",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "greeting",
+              outputs: [
+                {
+                  internalType: "string",
+                  name: "",
+                  type: "string",
+                },
+              ],
+              stateMutability: "view",
               type: "function",
             },
             {
@@ -103,6 +141,19 @@ const contracts = {
               type: "function",
             },
             {
+              inputs: [
+                {
+                  internalType: "string",
+                  name: "_newGreeting",
+                  type: "string",
+                },
+              ],
+              name: "setGreeting",
+              outputs: [],
+              stateMutability: "payable",
+              type: "function",
+            },
+            {
               inputs: [],
               name: "state",
               outputs: [
@@ -164,7 +215,7 @@ const contracts = {
           ],
         },
         ERC6551Registry: {
-          address: "0x0165878A594ca255338adfa4d48449f69242Eb8F",
+          address: "0x49fd2BE640DB2910c2fAb69bB8531Ab6E76127ff",
           abi: [
             {
               inputs: [],
@@ -299,8 +350,8 @@ const contracts = {
             },
           ],
         },
-        FakeApe: {
-          address: "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
+        FakeApeCoin: {
+          address: "0x7A9Ec1d04904907De0ED7b6839CcdD59c3716AC9",
           abi: [
             {
               inputs: [],
@@ -617,8 +668,8 @@ const contracts = {
             },
           ],
         },
-        LocalApes: {
-          address: "0x663F3ad617193148711d28f5334eE4Ed07016602",
+        GenericNFT: {
+          address: "0xA4899D35897033b927acFCf422bc745916139776",
           abi: [
             {
               inputs: [
@@ -1191,7 +1242,7 @@ const contracts = {
           ],
         },
         Tableland: {
-          address: "0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6",
+          address: "0x86A2EE8FAf9A840F7a2c64CA3d51209F9A02081D",
           abi: [
             {
               inputs: [
@@ -1273,7 +1324,7 @@ const contracts = {
           ],
         },
         YourContract: {
-          address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
+          address: "0x4C2F7092C2aE51D986bEFEe378e50BD4dB99C901",
           abi: [
             {
               inputs: [

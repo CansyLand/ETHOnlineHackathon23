@@ -12,8 +12,41 @@ import "./interfaces/IERC6551Executable.sol";
 // This is the tocken bound account representing the character
 // Adding table here?
 
+// Useful for debugging. Remove when deploying to a live network.
+import "hardhat/console.sol";
+
 contract ERC6551Account is IERC165, IERC1271, IERC6551Account, IERC6551Executable {
     uint256 public state;
+    string public greeting = "Building Unstoppable NFTs!!!";
+
+
+    // Events: a way to emit log statements from smart contract that can be listened to by external parties
+	event GreetingChange(
+		address indexed greetingSetter,
+		string newGreeting,
+		uint256 value
+	);
+    
+    function setGreeting(string memory _newGreeting) public payable {
+		// Print data to the hardhat chain console. Remove when deploying to a live network.
+		console.log(
+			"Setting new greeting '%s' from %s",
+			_newGreeting,
+			msg.sender
+		);
+
+		// Change state variables
+		greeting = _newGreeting;
+
+		// emit: keyword used to trigger an event
+		emit GreetingChange(msg.sender, _newGreeting, msg.value);
+	}
+
+
+
+
+
+
 
     receive() external payable {}
 

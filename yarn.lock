@@ -4211,6 +4211,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tokenbound/sdk@npm:^0.3.9":
+  version: 0.3.9
+  resolution: "@tokenbound/sdk@npm:0.3.9"
+  dependencies:
+    viem: ^1.14.0
+  checksum: 8714d33f976aabee72cd33dc3cf3f7feb6fb432bb1d655da2d38864b81b2361f6978b5fa8243bf26bf95217ab21a41812008fb7fcea489eae010bd6f607ea7eb
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:1":
   version: 1.1.2
   resolution: "@tootallnate/once@npm:1.1.2"
@@ -11819,6 +11828,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"isows@npm:1.0.3":
+  version: 1.0.3
+  resolution: "isows@npm:1.0.3"
+  peerDependencies:
+    ws: "*"
+  checksum: 9cacd5cf59f67deb51e825580cd445ab1725ecb05a67c704050383fb772856f3cd5e7da8ad08f5a3bd2823680d77d099459d0c6a7037972a74d6429af61af440
+  languageName: node
+  linkType: hard
+
 "iterator.prototype@npm:^1.1.2":
   version: 1.1.2
   resolution: "iterator.prototype@npm:1.1.2"
@@ -15882,6 +15900,7 @@ __metadata:
     "@openzeppelin/contracts": ^5.0.0
     "@tableland/evm": ^4.3.0
     "@tableland/local": ^2.0.2
+    "@tokenbound/sdk": ^0.3.9
     husky: ~8.0.3
     lint-staged: ~13.2.2
   languageName: unknown
@@ -17894,6 +17913,27 @@ __metadata:
     typescript:
       optional: true
   checksum: 47960c72439933d63c1c246b94be2f78aa1199a325bd232471b5004512195a5fa103c02f5a023a0606f9154accb363deeb0fd654b67493ce7e6d746fe0ce87c4
+  languageName: node
+  linkType: hard
+
+"viem@npm:^1.14.0":
+  version: 1.16.2
+  resolution: "viem@npm:1.16.2"
+  dependencies:
+    "@adraffy/ens-normalize": 1.9.4
+    "@noble/curves": 1.2.0
+    "@noble/hashes": 1.3.2
+    "@scure/bip32": 1.3.2
+    "@scure/bip39": 1.2.1
+    abitype: 0.9.8
+    isows: 1.0.3
+    ws: 8.13.0
+  peerDependencies:
+    typescript: ">=5.0.4"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 579ed4ab4f4e623f90f21d1c52696a81d06c4cf11557a784019c314add34b0626870d35ecc8947fea1b65b9c414b1816dd556e11e1e76b2b989fefde7d7747c6
   languageName: node
   linkType: hard
 

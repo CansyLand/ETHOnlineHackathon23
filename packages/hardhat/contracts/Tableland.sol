@@ -11,7 +11,7 @@ contract Tableland is ERC721Holder {
   // The table token ID, assigned upon `TablelandTables` minting a table
   uint256 private _tableId;
 
-
+//http://localhost:8080/api/v1/query?statement=select%20val%20from%20my_smart_contract_table_31337_3
 
 
   // Table prefix for the table (custom value)
@@ -64,7 +64,6 @@ function insert() public payable {
   );
 }
 
-//http://localhost:8080/api/v1/query?statement=select%20val%20from%20my_smart_contract_table_31337_3
 
 // Update data in the table
 function update(uint256 myId, string memory myVal) public payable {
