@@ -31,15 +31,15 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     autoMine: true,
   });
 
-  await deploy("YourContractCopy", {
-    from: deployer,
-    // Contract constructor arguments
-    args: [deployer],
-    log: true,
-    // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
-    // automatically mining the contract deployment transaction. There is no effect on live networks.
-    autoMine: true,
-  });
+  // await deploy("YourContractCopy", {
+  //   from: deployer,
+  //   // Contract constructor arguments
+  //   args: [deployer],
+  //   log: true,
+  //   // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
+  //   // automatically mining the contract deployment transaction. There is no effect on live networks.
+  //   autoMine: true,
+  // });
 
   await deploy("Starter", {
     from: deployer,
@@ -48,6 +48,13 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     log: true,
     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
     // automatically mining the contract deployment transaction. There is no effect on live networks.
+    autoMine: true,
+  });
+
+  await deploy("LocalApes", {
+    from: "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
+    args: ["0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC"],
+    log: true,
     autoMine: true,
   });
 

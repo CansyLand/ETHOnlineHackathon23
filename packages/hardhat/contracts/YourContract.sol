@@ -1,5 +1,5 @@
-//SPDX-License-Identifier: MIT
-pragma solidity >=0.8.0 <0.9.0;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
 
 // Useful for debugging. Remove when deploying to a live network.
 import "hardhat/console.sol";
@@ -30,8 +30,8 @@ contract YourContract is Ownable {
 
 	// Constructor: Called once on contract deployment
 	// Check packages/hardhat/deploy/00_deploy_your_contract.ts
-	constructor(address _contractOwner) {
-		contractOwner = _contractOwner;
+	constructor(address initialOwner)  Ownable(initialOwner) {
+		contractOwner = initialOwner;
 	}
 
 	// Modifier: used to define a set of rules that must be met before or after a function is executed
