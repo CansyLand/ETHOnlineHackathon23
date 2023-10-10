@@ -5,48 +5,13 @@ import "@openzeppelin/contracts/utils/introspection/IERC165.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/interfaces/IERC1271.sol";
 import "@openzeppelin/contracts/utils/cryptography/SignatureChecker.sol";
-
 import "./interfaces/IERC6551Account.sol";
 import "./interfaces/IERC6551Executable.sol";
 
-// This is the tocken bound account representing the character
-// Adding table here?
+// https://github.com/quiknode-labs/qn-guide-examples/tree/main/ethereum/erc-6551/contracts
 
-// Useful for debugging. Remove when deploying to a live network.
-import "hardhat/console.sol";
-
-contract ERC6551Account is IERC165, IERC1271, IERC6551Account, IERC6551Executable {
+contract ExampleERC6551Account is IERC165, IERC1271, IERC6551Account, IERC6551Executable {
     uint256 public state;
-    string public greeting = "Building Unstoppable NFTs!!!";
-
-
-    // Events: a way to emit log statements from smart contract that can be listened to by external parties
-	event GreetingChange(
-		address indexed greetingSetter,
-		string newGreeting,
-		uint256 value
-	);
-    
-    function setGreeting(string memory _newGreeting) public payable {
-		// Print data to the hardhat chain console. Remove when deploying to a live network.
-		console.log(
-			"Setting new greeting '%s' from %s",
-			_newGreeting,
-			msg.sender
-		);
-
-		// Change state variables
-		greeting = _newGreeting;
-
-		// emit: keyword used to trigger an event
-		emit GreetingChange(msg.sender, _newGreeting, msg.value);
-	}
-
-
-
-
-
-
 
     receive() external payable {}
 
@@ -55,7 +20,7 @@ contract ERC6551Account is IERC165, IERC1271, IERC6551Account, IERC6551Executabl
         uint256 value,
         bytes calldata data,
         uint256 operation
-    ) public payable virtual returns (bytes memory result) {
+    ) external payable returns (bytes memory result) {
         require(_isValidSigner(msg.sender), "Invalid signer");
         require(operation == 0, "Only call operations are supported");
 
@@ -71,7 +36,7 @@ contract ERC6551Account is IERC165, IERC1271, IERC6551Account, IERC6551Executabl
         }
     }
 
-    function isValidSigner(address signer, bytes calldata) public view virtual returns (bytes4) {
+    function isValidSigner(address signer, bytes calldata) external view returns (bytes4) {
         if (_isValidSigner(signer)) {
             return IERC6551Account.isValidSigner.selector;
         }
@@ -80,9 +45,8 @@ contract ERC6551Account is IERC165, IERC1271, IERC6551Account, IERC6551Executabl
     }
 
     function isValidSignature(bytes32 hash, bytes memory signature)
-        public
+        external
         view
-        virtual
         returns (bytes4 magicValue)
     {
         bool isValid = SignatureChecker.isValidSignatureNow(owner(), hash, signature);
@@ -94,7 +58,7 @@ contract ERC6551Account is IERC165, IERC1271, IERC6551Account, IERC6551Executabl
         return "";
     }
 
-    function supportsInterface(bytes4 interfaceId) public pure virtual returns (bool) {
+    function supportsInterface(bytes4 interfaceId) external pure returns (bool) {
         return (interfaceId == type(IERC165).interfaceId ||
             interfaceId == type(IERC6551Account).interfaceId ||
             interfaceId == type(IERC6551Executable).interfaceId);
@@ -103,7 +67,6 @@ contract ERC6551Account is IERC165, IERC1271, IERC6551Account, IERC6551Executabl
     function token()
         public
         view
-        virtual
         returns (
             uint256,
             address,
@@ -119,14 +82,14 @@ contract ERC6551Account is IERC165, IERC1271, IERC6551Account, IERC6551Executabl
         return abi.decode(footer, (uint256, address, uint256));
     }
 
-    function owner() public view virtual returns (address) {
+    function owner() public view returns (address) {
         (uint256 chainId, address tokenContract, uint256 tokenId) = token();
         if (chainId != block.chainid) return address(0);
 
         return IERC721(tokenContract).ownerOf(tokenId);
     }
 
-    function _isValidSigner(address signer) internal view virtual returns (bool) {
+    function _isValidSigner(address signer) internal view returns (bool) {
         return signer == owner();
     }
 }

@@ -37,19 +37,19 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     autoMine: true,
   });
 
-  const registry = await deploy("ERC6551Registry", {
+  // const registry =
+  await deploy("BBERC6551Registry", {
     from: deployer,
     log: true,
     autoMine: true,
   });
 
-  const account = await deploy("ERC6551Account", {
+  // const account =
+  await deploy("ERC6551Account", {
     from: deployer,
     log: true,
     autoMine: true,
   });
-  console.log("ACCOUNT:");
-  console.log(account.address);
 
   await deploy("Tableland", {
     from: deployer,
@@ -72,8 +72,9 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
 
   await init(hre, {
     nft: nft,
-    registry: registry,
-    account: account,
+    // registry: registry,
+    // account: account,
+    deployer: deployer,
   });
   // Get the deployed contract
   // const yourContract = await hre.ethers.getContract("YourContract", deployer);
@@ -106,7 +107,7 @@ async function init(hre: HardhatRuntimeEnvironment, tx: any) {
   const recipient = "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC";
   const uri = ""; // you can leave it empty as the contract generates URIs
 
-  const txNFT = await nft.safeMint(recipient, uri);
+  const txNFT = await nft.safeMint(tx.deployer, uri);
   await txNFT.wait();
   console.log(`Minted NFT ${randomFace()} #${0} Contract Owner`);
 
@@ -118,39 +119,39 @@ async function init(hre: HardhatRuntimeEnvironment, tx: any) {
     console.log(`Minted NFT ${randomFace()} #${i + 1}`);
   }
 
-  /**
-   * 2. MINT TOKENBOUND ACCOUNT
-   */
-  // Provided data
-  const registryAddress = tx.registry.address;
-  const implementationAddress = tx.account.address;
-  const chainId = 31337;
-  const tokenContractAddress = tx.nft.address;
-  const tokenId = 1; // Creator owns 0, I own 1 - 5
-  const salt = 0;
-  const initData = "0x"; // replace with your initialization data if any
+  // /**
+  //  * 2. MINT TOKENBOUND ACCOUNT
+  //  */
+  // // Provided data
+  // const registryAddress = tx.registry.address;
+  // const implementationAddress = tx.account.address;
+  // const chainId = 31337;
+  // const tokenContractAddress = tx.nft.address;
+  // const tokenId = 1; // Creator owns 0, I own 1 - 5
+  // const salt = 0;
+  // const initData = "0x"; // replace with your initialization data if any
 
-  // Get signer (account) to interact with the contract
-  const [signer] = await hre.ethers.getSigners();
-  console.log("Using account:", signer.address);
+  // // Get signer (account) to interact with the contract
+  // const [signer] = await hre.ethers.getSigners();
+  // console.log("Using account:", signer.address);
 
-  // Get the contract instance
-  const ERC6551Registry = await hre.ethers.getContractFactory("ERC6551Registry");
-  const registry = ERC6551Registry.attach(registryAddress);
+  // // Get the contract instance
+  // const ERC6551Registry = await hre.ethers.getContractFactory("ERC6551Registry");
+  // const registry = ERC6551Registry.attach(registryAddress);
 
-  // Create token-bound account
-  const txTokenBound = await registry
-    .connect(signer)
-    .createAccount(implementationAddress, chainId, tokenContractAddress, tokenId, salt, initData);
-  const receipt = await txTokenBound.wait();
+  // // Create token-bound account
+  // const txTokenBound = await registry
+  //   .connect(signer)
+  //   .createAccount(implementationAddress, chainId, tokenContractAddress, tokenId, salt, initData);
+  // const receipt = await txTokenBound.wait();
 
-  // Log the created account address from the emitted event
-  const event = receipt.events.find((e: any) => e.event === "AccountCreated");
-  if (event) {
-    console.log("Token-bound account created at:", event.address);
-  } else {
-    console.error("Failed to create token-bound account");
-  }
+  // // Log the created account address from the emitted event
+  // const event = receipt.events.find((e: any) => e.event === "AccountCreated");
+  // if (event) {
+  //   console.log("Token-bound account created at:", event.address);
+  // } else {
+  //   console.error("Failed to create token-bound account");
+  // }
 }
 
 //  Account #0: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 (10000 ETH)

@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/utils/Create2.sol";
@@ -7,7 +7,7 @@ import "./interfaces/IERC6551Registry.sol";
 import "./lib/ERC6551BytecodeLib.sol";
 
 contract ERC6551Registry is IERC6551Registry {
-    error AccountCreationFailed();
+    error InitializationFailed();
 
     function createAccount(
         address implementation,
@@ -31,20 +31,11 @@ contract ERC6551Registry is IERC6551Registry {
 
         emit AccountCreated(_account, implementation, chainId, tokenContract, tokenId, salt);
 
-        assembly {
-            _account := create2(0, add(code, 0x20), mload(code), salt)
-        }
-
-        if (_account == address(0)) revert AccountCreationFailed();
+        _account = Create2.deploy(0, bytes32(salt), code);
 
         if (initData.length != 0) {
-            (bool success, bytes memory result) = _account.call(initData);
-
-            if (!success) {
-                assembly {
-                    revert(add(result, 32), mload(result))
-                }
-            }
+            (bool success, ) = _account.call(initData);
+            if (!success) revert InitializationFailed();
         }
 
         return _account;
