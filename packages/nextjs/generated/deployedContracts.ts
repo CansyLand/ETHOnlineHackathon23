@@ -4,35 +4,9 @@ const contracts = {
       chainId: "31337",
       name: "localhost",
       contracts: {
-        BBERC6551Registry: {
-          address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
+        ERC6551Registry: {
+          address: "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
           abi: [
-            {
-              inputs: [],
-              name: "Create2EmptyBytecode",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "Create2FailedDeployment",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "uint256",
-                  name: "balance",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "needed",
-                  type: "uint256",
-                },
-              ],
-              name: "Create2InsufficientBalance",
-              type: "error",
-            },
             {
               inputs: [],
               name: "InitializationFailed",
@@ -166,159 +140,8 @@ const contracts = {
             },
           ],
         },
-        ERC6551Account: {
-          address: "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
-          abi: [
-            {
-              inputs: [
-                {
-                  internalType: "uint256",
-                  name: "_size",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "_start",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "_end",
-                  type: "uint256",
-                },
-              ],
-              name: "InvalidCodeAtRange",
-              type: "error",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "address",
-                  name: "to",
-                  type: "address",
-                },
-                {
-                  internalType: "uint256",
-                  name: "value",
-                  type: "uint256",
-                },
-                {
-                  internalType: "bytes",
-                  name: "data",
-                  type: "bytes",
-                },
-              ],
-              name: "executeCall",
-              outputs: [
-                {
-                  internalType: "bytes",
-                  name: "result",
-                  type: "bytes",
-                },
-              ],
-              stateMutability: "payable",
-              type: "function",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "bytes32",
-                  name: "hash",
-                  type: "bytes32",
-                },
-                {
-                  internalType: "bytes",
-                  name: "signature",
-                  type: "bytes",
-                },
-              ],
-              name: "isValidSignature",
-              outputs: [
-                {
-                  internalType: "bytes4",
-                  name: "magicValue",
-                  type: "bytes4",
-                },
-              ],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
-              inputs: [],
-              name: "nonce",
-              outputs: [
-                {
-                  internalType: "uint256",
-                  name: "",
-                  type: "uint256",
-                },
-              ],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
-              inputs: [],
-              name: "owner",
-              outputs: [
-                {
-                  internalType: "address",
-                  name: "",
-                  type: "address",
-                },
-              ],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
-              inputs: [
-                {
-                  internalType: "bytes4",
-                  name: "interfaceId",
-                  type: "bytes4",
-                },
-              ],
-              name: "supportsInterface",
-              outputs: [
-                {
-                  internalType: "bool",
-                  name: "",
-                  type: "bool",
-                },
-              ],
-              stateMutability: "pure",
-              type: "function",
-            },
-            {
-              inputs: [],
-              name: "token",
-              outputs: [
-                {
-                  internalType: "uint256",
-                  name: "chainId",
-                  type: "uint256",
-                },
-                {
-                  internalType: "address",
-                  name: "tokenContract",
-                  type: "address",
-                },
-                {
-                  internalType: "uint256",
-                  name: "tokenId",
-                  type: "uint256",
-                },
-              ],
-              stateMutability: "view",
-              type: "function",
-            },
-            {
-              stateMutability: "payable",
-              type: "receive",
-            },
-          ],
-        },
         FakeApeCoin: {
-          address: "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+          address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
           abi: [
             {
               inputs: [],
@@ -636,7 +459,7 @@ const contracts = {
           ],
         },
         GenericNFT: {
-          address: "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853",
+          address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
           abi: [
             {
               inputs: [
@@ -1208,90 +1031,163 @@ const contracts = {
             },
           ],
         },
-        Tableland: {
-          address: "0x0165878A594ca255338adfa4d48449f69242Eb8F",
+        SimpleERC6551Account: {
+          address: "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
           abi: [
             {
+              anonymous: false,
               inputs: [
                 {
+                  indexed: true,
+                  internalType: "address",
+                  name: "target",
+                  type: "address",
+                },
+                {
+                  indexed: true,
                   internalType: "uint256",
-                  name: "chainid",
+                  name: "value",
                   type: "uint256",
                 },
+                {
+                  indexed: false,
+                  internalType: "bytes",
+                  name: "data",
+                  type: "bytes",
+                },
               ],
-              name: "ChainNotSupported",
-              type: "error",
-            },
-            {
-              inputs: [],
-              name: "create",
-              outputs: [],
-              stateMutability: "payable",
-              type: "function",
-            },
-            {
-              inputs: [],
-              name: "insert",
-              outputs: [],
-              stateMutability: "payable",
-              type: "function",
+              name: "TransactionExecuted",
+              type: "event",
             },
             {
               inputs: [
                 {
                   internalType: "address",
-                  name: "",
-                  type: "address",
-                },
-                {
-                  internalType: "address",
-                  name: "",
+                  name: "to",
                   type: "address",
                 },
                 {
                   internalType: "uint256",
-                  name: "",
+                  name: "value",
                   type: "uint256",
                 },
                 {
                   internalType: "bytes",
-                  name: "",
+                  name: "data",
                   type: "bytes",
                 },
               ],
-              name: "onERC721Received",
+              name: "executeCall",
               outputs: [
                 {
-                  internalType: "bytes4",
-                  name: "",
-                  type: "bytes4",
+                  internalType: "bytes",
+                  name: "result",
+                  type: "bytes",
                 },
               ],
-              stateMutability: "nonpayable",
+              stateMutability: "payable",
               type: "function",
             },
             {
               inputs: [
                 {
+                  internalType: "bytes32",
+                  name: "hash",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes",
+                  name: "signature",
+                  type: "bytes",
+                },
+              ],
+              name: "isValidSignature",
+              outputs: [
+                {
+                  internalType: "bytes4",
+                  name: "magicValue",
+                  type: "bytes4",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "nonce",
+              outputs: [
+                {
                   internalType: "uint256",
-                  name: "myId",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "owner",
+              outputs: [
+                {
+                  internalType: "address",
+                  name: "",
+                  type: "address",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "bytes4",
+                  name: "interfaceId",
+                  type: "bytes4",
+                },
+              ],
+              name: "supportsInterface",
+              outputs: [
+                {
+                  internalType: "bool",
+                  name: "",
+                  type: "bool",
+                },
+              ],
+              stateMutability: "pure",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "token",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
                   type: "uint256",
                 },
                 {
-                  internalType: "string",
-                  name: "myVal",
-                  type: "string",
+                  internalType: "address",
+                  name: "",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
                 },
               ],
-              name: "update",
-              outputs: [],
-              stateMutability: "payable",
+              stateMutability: "view",
               type: "function",
+            },
+            {
+              stateMutability: "payable",
+              type: "receive",
             },
           ],
         },
         YourContract: {
-          address: "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+          address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
           abi: [
             {
               inputs: [

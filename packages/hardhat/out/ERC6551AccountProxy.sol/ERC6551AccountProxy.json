@@ -1,0 +1,812 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_defaultImplementation",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "previousAdmin",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "newAdmin",
+          "type": "address"
+        }
+      ],
+      "name": "AdminChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "beacon",
+          "type": "address"
+        }
+      ],
+      "name": "BeaconUpgraded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "implementation",
+          "type": "address"
+        }
+      ],
+      "name": "Upgraded",
+      "type": "event"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "fallback"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    }
+  ],
+  "bytecode": {
+    "object": "0x60a060405234801561001057600080fd5b5060405161017038038061017083398101604081905261002f91610040565b6001600160a01b0316608052610070565b60006020828403121561005257600080fd5b81516001600160a01b038116811461006957600080fd5b9392505050565b60805160e861008860003960006065015260e86000f3fe608060405236601057600e6013565b005b600e5b601f601b6021565b608f565b565b60008060547f360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc546001600160a01b031690565b90506001600160a01b038116608a577f000000000000000000000000000000000000000000000000000000000000000091505090565b919050565b3660008037600080366000845af43d6000803e80801560ad573d6000f35b3d6000fdfea26469706673582212200d9a5c5071827eedd07e811f7ac62ea069d58a98b0795de79b4d687c30a6049964736f6c63430008150033",
+    "sourceMap": "173:479:2:-:0;;;279:107;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;-1:-1:-1;;;;;333:46:2;;;173:479;;14:290:25;84:6;137:2;125:9;116:7;112:23;108:32;105:52;;;153:1;150;143:12;105:52;179:16;;-1:-1:-1;;;;;224:31:25;;214:42;;204:70;;270:1;267;260:12;204:70;293:5;14:290;-1:-1:-1;;;14:290:25:o;:::-;173:479:2;;;;;;;;;;;;",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x608060405236601057600e6013565b005b600e5b601f601b6021565b608f565b565b60008060547f360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc546001600160a01b031690565b90506001600160a01b038116608a577f000000000000000000000000000000000000000000000000000000000000000091505090565b919050565b3660008037600080366000845af43d6000803e80801560ad573d6000f35b3d6000fdfea26469706673582212200d9a5c5071827eedd07e811f7ac62ea069d58a98b0795de79b4d687c30a6049964736f6c63430008150033",
+    "sourceMap": "173:479:2:-:0;;;;;;2898:11:11;:9;:11::i;:::-;173:479:2;;2675:11:11;2322:110;2397:28;2407:17;:15;:17::i;:::-;2397:9;:28::i;:::-;2322:110::o;392:258:2:-;459:7;478:22;503:35;1030:66:10;1380:54;-1:-1:-1;;;;;1380:54:10;;1301:140;503:35:2;478:60;-1:-1:-1;;;;;;553:28:2;;549:62;;590:21;583:28;;;392:258;:::o;549:62::-;629:14;392:258;-1:-1:-1;392:258:2:o;948:895:11:-;1286:14;1283:1;1280;1267:34;1500:1;1497;1481:14;1478:1;1462:14;1455:5;1442:60;1576:16;1573:1;1570;1555:38;1614:6;1681:66;;;;1796:16;1793:1;1786:27;1681:66;1716:16;1713:1;1706:27",
+    "linkReferences": {},
+    "immutableReferences": {
+      "318": [
+        {
+          "start": 101,
+          "length": 32
+        }
+      ]
+    }
+  },
+  "methodIdentifiers": {},
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_defaultImplementation\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"previousAdmin\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"AdminChanged\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"beacon\",\"type\":\"address\"}],\"name\":\"BeaconUpgraded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"implementation\",\"type\":\"address\"}],\"name\":\"Upgraded\",\"type\":\"event\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"events\":{\"AdminChanged(address,address)\":{\"details\":\"Emitted when the admin account has changed.\"},\"BeaconUpgraded(address)\":{\"details\":\"Emitted when the beacon is upgraded.\"},\"Upgraded(address)\":{\"details\":\"Emitted when the implementation is upgraded.\"}},\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/ERC6551/examples/upgradeable/ERC6551AccountProxy.sol\":\"ERC6551AccountProxy\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@openzeppelin/=node_modules/@openzeppelin/\",\":ds-test/=lib/erc6551/lib/forge-std/lib/ds-test/src/\",\":erc6551/=lib/erc6551/\",\":eth-gas-reporter/=node_modules/eth-gas-reporter/\",\":forge-std/=lib/erc6551/lib/forge-std/src/\",\":hardhat-deploy/=node_modules/hardhat-deploy/\",\":hardhat/=node_modules/hardhat/\",\":openzeppelin-contracts/=lib/erc6551/lib/openzeppelin-contracts/contracts/\",\":sstore2/=lib/erc6551/lib/sstore2/contracts/\"]},\"sources\":{\"contracts/ERC6551/examples/upgradeable/ERC6551AccountProxy.sol\":{\"keccak256\":\"0xe1dbdd124eaa6375293198ab2515ab467d41a7aecfa518d3c7552463317d5f3f\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://cced98e29e10a8a2d5cd6f061b0265a325f5a18d5796e340ff09249fab0908a3\",\"dweb:/ipfs/QmeXwaFM6aW9GTbySKxr11PEJ8vwtiHxNSXG2qo31h8cz1\"]},\"lib/erc6551/lib/openzeppelin-contracts/contracts/interfaces/draft-IERC1822.sol\":{\"keccak256\":\"0x1d4afe6cb24200cc4545eed814ecf5847277dfe5d613a1707aad5fceecebcfff\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://383fb7b8181016ac5ccf07bc9cdb7c1b5045ea36e2cc4df52bcbf20396fc7688\",\"dweb:/ipfs/QmYJ7Cg4WmE3rR8KGQxjUCXFfTH6TcwZ2Z1f6tPrq7jHFr\"]},\"lib/erc6551/lib/openzeppelin-contracts/contracts/proxy/ERC1967/ERC1967Upgrade.sol\":{\"keccak256\":\"0xabf3f59bc0e5423eae45e459dbe92e7052c6983628d39008590edc852a62f94a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://89c2a0f70157c13845be5cb49b078a6374fee3a78fa950052a3af26190255da8\",\"dweb:/ipfs/QmUcvMEQH1oMM2pUyMuDiBUKdvvnTz1NRB8bmPHrVq8725\"]},\"lib/erc6551/lib/openzeppelin-contracts/contracts/proxy/Proxy.sol\":{\"keccak256\":\"0xc130fe33f1b2132158531a87734153293f6d07bc263ff4ac90e85da9c82c0e27\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8831721b6f4cc26534d190f9f1631c3f59c9ff38efdd911f85e0882b8e360472\",\"dweb:/ipfs/QmQZnLErZNStirSQ13ZNWQgvEYUtGE5tXYwn4QUPaVUfPN\"]},\"lib/erc6551/lib/openzeppelin-contracts/contracts/proxy/beacon/IBeacon.sol\":{\"keccak256\":\"0xd50a3421ac379ccb1be435fa646d66a65c986b4924f0849839f08692f39dde61\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ada1e030c0231db8d143b44ce92b4d1158eedb087880cad6d8cc7bd7ebe7b354\",\"dweb:/ipfs/QmWZ2NHZweRpz1U9GF6R1h65ri76dnX7fNxLBeM2t5N5Ce\"]},\"lib/erc6551/lib/openzeppelin-contracts/contracts/utils/Address.sol\":{\"keccak256\":\"0xf96f969e24029d43d0df89e59d365f277021dac62b48e1c1e3ebe0acdd7f1ca1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ec772b45a624be516f1c81970caa8a2e144301e9d0921cbc1a2789fef39a1269\",\"dweb:/ipfs/QmNyjwxCrGhQMyzLD93oUobJXVe9ceJvRvfXwbEtuxPiEj\"]},\"lib/erc6551/lib/openzeppelin-contracts/contracts/utils/StorageSlot.sol\":{\"keccak256\":\"0xd5c50c54bf02740ebd122ff06832546cb5fa84486d52695a9ccfd11666e0c81d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://39e096c60a6eb1c6a257122d515496bd92d0c6a693a8f07acb6aa4b1263e95d4\",\"dweb:/ipfs/QmPs5trJBacCiSkezP6tpevapuRYWNY6mqSFzsMCJj7e6B\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.21+commit.d9974bed"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_defaultImplementation",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "previousAdmin",
+              "type": "address",
+              "indexed": false
+            },
+            {
+              "internalType": "address",
+              "name": "newAdmin",
+              "type": "address",
+              "indexed": false
+            }
+          ],
+          "type": "event",
+          "name": "AdminChanged",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "beacon",
+              "type": "address",
+              "indexed": true
+            }
+          ],
+          "type": "event",
+          "name": "BeaconUpgraded",
+          "anonymous": false
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "implementation",
+              "type": "address",
+              "indexed": true
+            }
+          ],
+          "type": "event",
+          "name": "Upgraded",
+          "anonymous": false
+        },
+        {
+          "inputs": [],
+          "stateMutability": "payable",
+          "type": "fallback"
+        },
+        {
+          "inputs": [],
+          "stateMutability": "payable",
+          "type": "receive"
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        "@openzeppelin/=node_modules/@openzeppelin/",
+        "ds-test/=lib/erc6551/lib/forge-std/lib/ds-test/src/",
+        "erc6551/=lib/erc6551/",
+        "eth-gas-reporter/=node_modules/eth-gas-reporter/",
+        "forge-std/=lib/erc6551/lib/forge-std/src/",
+        "hardhat-deploy/=node_modules/hardhat-deploy/",
+        "hardhat/=node_modules/hardhat/",
+        "openzeppelin-contracts/=lib/erc6551/lib/openzeppelin-contracts/contracts/",
+        "sstore2/=lib/erc6551/lib/sstore2/contracts/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "contracts/ERC6551/examples/upgradeable/ERC6551AccountProxy.sol": "ERC6551AccountProxy"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "contracts/ERC6551/examples/upgradeable/ERC6551AccountProxy.sol": {
+        "keccak256": "0xe1dbdd124eaa6375293198ab2515ab467d41a7aecfa518d3c7552463317d5f3f",
+        "urls": [
+          "bzz-raw://cced98e29e10a8a2d5cd6f061b0265a325f5a18d5796e340ff09249fab0908a3",
+          "dweb:/ipfs/QmeXwaFM6aW9GTbySKxr11PEJ8vwtiHxNSXG2qo31h8cz1"
+        ],
+        "license": "MIT"
+      },
+      "lib/erc6551/lib/openzeppelin-contracts/contracts/interfaces/draft-IERC1822.sol": {
+        "keccak256": "0x1d4afe6cb24200cc4545eed814ecf5847277dfe5d613a1707aad5fceecebcfff",
+        "urls": [
+          "bzz-raw://383fb7b8181016ac5ccf07bc9cdb7c1b5045ea36e2cc4df52bcbf20396fc7688",
+          "dweb:/ipfs/QmYJ7Cg4WmE3rR8KGQxjUCXFfTH6TcwZ2Z1f6tPrq7jHFr"
+        ],
+        "license": "MIT"
+      },
+      "lib/erc6551/lib/openzeppelin-contracts/contracts/proxy/ERC1967/ERC1967Upgrade.sol": {
+        "keccak256": "0xabf3f59bc0e5423eae45e459dbe92e7052c6983628d39008590edc852a62f94a",
+        "urls": [
+          "bzz-raw://89c2a0f70157c13845be5cb49b078a6374fee3a78fa950052a3af26190255da8",
+          "dweb:/ipfs/QmUcvMEQH1oMM2pUyMuDiBUKdvvnTz1NRB8bmPHrVq8725"
+        ],
+        "license": "MIT"
+      },
+      "lib/erc6551/lib/openzeppelin-contracts/contracts/proxy/Proxy.sol": {
+        "keccak256": "0xc130fe33f1b2132158531a87734153293f6d07bc263ff4ac90e85da9c82c0e27",
+        "urls": [
+          "bzz-raw://8831721b6f4cc26534d190f9f1631c3f59c9ff38efdd911f85e0882b8e360472",
+          "dweb:/ipfs/QmQZnLErZNStirSQ13ZNWQgvEYUtGE5tXYwn4QUPaVUfPN"
+        ],
+        "license": "MIT"
+      },
+      "lib/erc6551/lib/openzeppelin-contracts/contracts/proxy/beacon/IBeacon.sol": {
+        "keccak256": "0xd50a3421ac379ccb1be435fa646d66a65c986b4924f0849839f08692f39dde61",
+        "urls": [
+          "bzz-raw://ada1e030c0231db8d143b44ce92b4d1158eedb087880cad6d8cc7bd7ebe7b354",
+          "dweb:/ipfs/QmWZ2NHZweRpz1U9GF6R1h65ri76dnX7fNxLBeM2t5N5Ce"
+        ],
+        "license": "MIT"
+      },
+      "lib/erc6551/lib/openzeppelin-contracts/contracts/utils/Address.sol": {
+        "keccak256": "0xf96f969e24029d43d0df89e59d365f277021dac62b48e1c1e3ebe0acdd7f1ca1",
+        "urls": [
+          "bzz-raw://ec772b45a624be516f1c81970caa8a2e144301e9d0921cbc1a2789fef39a1269",
+          "dweb:/ipfs/QmNyjwxCrGhQMyzLD93oUobJXVe9ceJvRvfXwbEtuxPiEj"
+        ],
+        "license": "MIT"
+      },
+      "lib/erc6551/lib/openzeppelin-contracts/contracts/utils/StorageSlot.sol": {
+        "keccak256": "0xd5c50c54bf02740ebd122ff06832546cb5fa84486d52695a9ccfd11666e0c81d",
+        "urls": [
+          "bzz-raw://39e096c60a6eb1c6a257122d515496bd92d0c6a693a8f07acb6aa4b1263e95d4",
+          "dweb:/ipfs/QmPs5trJBacCiSkezP6tpevapuRYWNY6mqSFzsMCJj7e6B"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "contracts/ERC6551/examples/upgradeable/ERC6551AccountProxy.sol",
+    "id": 354,
+    "exportedSymbols": {
+      "Address": [
+        1943
+      ],
+      "ERC1967Upgrade": [
+        1376
+      ],
+      "ERC6551AccountProxy": [
+        353
+      ],
+      "IBeacon": [
+        1438
+      ],
+      "IERC1822Proxiable": [
+        1058
+      ],
+      "Proxy": [
+        1428
+      ],
+      "StorageSlot": [
+        2084
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "32:621:2",
+    "nodes": [
+      {
+        "id": 310,
+        "nodeType": "PragmaDirective",
+        "src": "32:23:2",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ]
+      },
+      {
+        "id": 311,
+        "nodeType": "ImportDirective",
+        "src": "57:65:2",
+        "nodes": [],
+        "absolutePath": "lib/erc6551/lib/openzeppelin-contracts/contracts/proxy/ERC1967/ERC1967Upgrade.sol",
+        "file": "openzeppelin-contracts/proxy/ERC1967/ERC1967Upgrade.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 354,
+        "sourceUnit": 1377,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 312,
+        "nodeType": "ImportDirective",
+        "src": "123:48:2",
+        "nodes": [],
+        "absolutePath": "lib/erc6551/lib/openzeppelin-contracts/contracts/proxy/Proxy.sol",
+        "file": "openzeppelin-contracts/proxy/Proxy.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 354,
+        "sourceUnit": 1429,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 353,
+        "nodeType": "ContractDefinition",
+        "src": "173:479:2",
+        "nodes": [
+          {
+            "id": 318,
+            "nodeType": "VariableDeclaration",
+            "src": "233:39:2",
+            "nodes": [],
+            "constant": false,
+            "mutability": "immutable",
+            "name": "defaultImplementation",
+            "nameLocation": "251:21:2",
+            "scope": 353,
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 317,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "233:7:2",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "id": 328,
+            "nodeType": "FunctionDefinition",
+            "src": "279:107:2",
+            "nodes": [],
+            "body": {
+              "id": 327,
+              "nodeType": "Block",
+              "src": "323:63:2",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "id": 325,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 323,
+                      "name": "defaultImplementation",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 318,
+                      "src": "333:21:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 324,
+                      "name": "_defaultImplementation",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 320,
+                      "src": "357:22:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "333:46:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 326,
+                  "nodeType": "ExpressionStatement",
+                  "src": "333:46:2"
+                }
+              ]
+            },
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "parameters": {
+              "id": 321,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 320,
+                  "mutability": "mutable",
+                  "name": "_defaultImplementation",
+                  "nameLocation": "299:22:2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 328,
+                  "src": "291:30:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 319,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "291:7:2",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "290:32:2"
+            },
+            "returnParameters": {
+              "id": 322,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "323:0:2"
+            },
+            "scope": 353,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "id": 352,
+            "nodeType": "FunctionDefinition",
+            "src": "392:258:2",
+            "nodes": [],
+            "body": {
+              "id": 351,
+              "nodeType": "Block",
+              "src": "468:182:2",
+              "nodes": [],
+              "statements": [
+                {
+                  "assignments": [
+                    335
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 335,
+                      "mutability": "mutable",
+                      "name": "implementation",
+                      "nameLocation": "486:14:2",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 351,
+                      "src": "478:22:2",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      },
+                      "typeName": {
+                        "id": 334,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "478:7:2",
+                        "stateMutability": "nonpayable",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 339,
+                  "initialValue": {
+                    "arguments": [],
+                    "expression": {
+                      "argumentTypes": [],
+                      "expression": {
+                        "id": 336,
+                        "name": "ERC1967Upgrade",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1376,
+                        "src": "503:14:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_contract$_ERC1967Upgrade_$1376_$",
+                          "typeString": "type(contract ERC1967Upgrade)"
+                        }
+                      },
+                      "id": 337,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "518:18:2",
+                      "memberName": "_getImplementation",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 1090,
+                      "src": "503:33:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_view$__$returns$_t_address_$",
+                        "typeString": "function () view returns (address)"
+                      }
+                    },
+                    "id": 338,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "503:35:2",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "478:60:2"
+                },
+                {
+                  "condition": {
+                    "commonType": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    },
+                    "id": 345,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 340,
+                      "name": "implementation",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 335,
+                      "src": "553:14:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "arguments": [
+                        {
+                          "hexValue": "30",
+                          "id": 343,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "579:1:2",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          }
+                        ],
+                        "id": 342,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "ElementaryTypeNameExpression",
+                        "src": "571:7:2",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_address_$",
+                          "typeString": "type(address)"
+                        },
+                        "typeName": {
+                          "id": 341,
+                          "name": "address",
+                          "nodeType": "ElementaryTypeName",
+                          "src": "571:7:2",
+                          "typeDescriptions": {}
+                        }
+                      },
+                      "id": 344,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "nameLocations": [],
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "571:10:2",
+                      "tryCall": false,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "553:28:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 348,
+                  "nodeType": "IfStatement",
+                  "src": "549:62:2",
+                  "trueBody": {
+                    "expression": {
+                      "id": 346,
+                      "name": "defaultImplementation",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 318,
+                      "src": "590:21:2",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "functionReturnParameters": 333,
+                    "id": 347,
+                    "nodeType": "Return",
+                    "src": "583:28:2"
+                  }
+                },
+                {
+                  "expression": {
+                    "id": 349,
+                    "name": "implementation",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 335,
+                    "src": "629:14:2",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "functionReturnParameters": 333,
+                  "id": 350,
+                  "nodeType": "Return",
+                  "src": "622:21:2"
+                }
+              ]
+            },
+            "baseFunctions": [
+              1393
+            ],
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_implementation",
+            "nameLocation": "401:15:2",
+            "overrides": {
+              "id": 330,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "441:8:2"
+            },
+            "parameters": {
+              "id": 329,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "416:2:2"
+            },
+            "returnParameters": {
+              "id": 333,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 332,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 352,
+                  "src": "459:7:2",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 331,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "459:7:2",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "458:9:2"
+            },
+            "scope": 353,
+            "stateMutability": "view",
+            "virtual": true,
+            "visibility": "internal"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 313,
+              "name": "Proxy",
+              "nameLocations": [
+                "205:5:2"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 1428,
+              "src": "205:5:2"
+            },
+            "id": 314,
+            "nodeType": "InheritanceSpecifier",
+            "src": "205:5:2"
+          },
+          {
+            "baseName": {
+              "id": 315,
+              "name": "ERC1967Upgrade",
+              "nameLocations": [
+                "212:14:2"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 1376,
+              "src": "212:14:2"
+            },
+            "id": 316,
+            "nodeType": "InheritanceSpecifier",
+            "src": "212:14:2"
+          }
+        ],
+        "canonicalName": "ERC6551AccountProxy",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "linearizedBaseContracts": [
+          353,
+          1376,
+          1428
+        ],
+        "name": "ERC6551AccountProxy",
+        "nameLocation": "182:19:2",
+        "scope": 354,
+        "usedErrors": [],
+        "usedEvents": [
+          1077,
+          1223,
+          1288
+        ]
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 2
+}

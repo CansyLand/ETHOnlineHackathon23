@@ -38,28 +38,28 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   });
 
   // const registry =
-  await deploy("BBERC6551Registry", {
+  await deploy("ERC6551Registry", {
     from: deployer,
     log: true,
     autoMine: true,
   });
 
   // const account =
-  await deploy("ERC6551Account", {
+  await deploy("SimpleERC6551Account", {
     from: deployer,
     log: true,
     autoMine: true,
   });
 
-  await deploy("Tableland", {
-    from: deployer,
-    // Contract constructor arguments
-    // args: [deployer],
-    log: true,
-    // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
-    // automatically mining the contract deployment transaction. There is no effect on live networks.
-    autoMine: true,
-  });
+  // await deploy("Tableland", {
+  //   from: deployer,
+  //   // Contract constructor arguments
+  //   // args: [deployer],
+  //   log: true,
+  //   // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
+  //   // automatically mining the contract deployment transaction. There is no effect on live networks.
+  //   autoMine: true,
+  // });
 
   const nft = await deploy("GenericNFT", {
     // from: "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
@@ -104,7 +104,8 @@ async function init(hre: HardhatRuntimeEnvironment, tx: any) {
   const nft = GenericNFT.attach(tx.nft.address);
 
   // Define the recipient and URI
-  const recipient = "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC";
+  // const recipient = "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC";
+  const recipient = "0x127c2e9893d5569c12052fa8d9bcab31595a9de0";
   const uri = ""; // you can leave it empty as the contract generates URIs
 
   const txNFT = await nft.safeMint(tx.deployer, uri);
@@ -112,11 +113,11 @@ async function init(hre: HardhatRuntimeEnvironment, tx: any) {
   console.log(`Minted NFT ${randomFace()} #${0} Contract Owner`);
 
   // Mint the NFTs to my wallet
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 2; i++) {
     // change 5 to the number of NFTs you want to mint
     const tx = await nft.safeMint(recipient, uri);
     await tx.wait();
-    console.log(`Minted NFT ${randomFace()} #${i + 1}`);
+    console.log(`Minted NFT ${randomFace()} #${i + 1} ` + recipient);
   }
 
   // /**
