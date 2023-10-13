@@ -82,7 +82,7 @@ contract Account is
         if (isLocked()) revert AccountLocked();
         _;
     }
-
+ 
     constructor(address _guardian, address entryPoint_) {
         if (_guardian == address(0) || entryPoint_ == address(0))
             revert InvalidInput();
