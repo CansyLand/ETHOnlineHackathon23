@@ -30,7 +30,7 @@ contract YourContract is Ownable {
 
 	// Constructor: Called once on contract deployment
 	// Check packages/hardhat/deploy/00_deploy_your_contract.ts
-	constructor(address initialOwner)  Ownable(initialOwner) {
+	constructor(address initialOwner)  Ownable() {
 		contractOwner = initialOwner;
 	}
 

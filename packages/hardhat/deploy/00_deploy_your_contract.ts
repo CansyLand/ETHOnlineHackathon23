@@ -37,6 +37,16 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     autoMine: true,
   });
 
+  const nft = await deploy("GenericNFT", {
+    // from: "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
+    // args: ["0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC"],
+    from: deployer,
+    args: [deployer],
+    log: true,
+    autoMine: true,
+  });
+
+  // This contract returns the address of NFTs personal account
   // const registry =
   await deploy("ERC6551Registry", {
     from: deployer,
@@ -44,9 +54,33 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     autoMine: true,
   });
 
-  // const account =
-  await deploy("SimpleERC6551Account", {
+  const guardian = await deploy("AccountGuardian", {
     from: deployer,
+    log: true,
+    autoMine: true,
+  });
+
+  // account-abstraction/core/EntryPoint.sol
+  // Entrypoint for account abstraction erc4337
+  const entryPoint = await deploy("EntryPoint", {
+    from: deployer,
+    // args: [guardian.address],
+    log: true,
+    autoMine: true,
+  });
+
+  // Tokenbound account implementation
+  const accountImplementation = await deploy("Account", {
+    from: deployer,
+    args: [guardian.address, entryPoint.address],
+    log: true,
+    autoMine: true,
+  });
+
+  // This will route messages to the Account Implementation
+  await deploy("AccountProxy", {
+    from: deployer,
+    args: [accountImplementation.address],
     log: true,
     autoMine: true,
   });
@@ -60,15 +94,6 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   //   // automatically mining the contract deployment transaction. There is no effect on live networks.
   //   autoMine: true,
   // });
-
-  const nft = await deploy("GenericNFT", {
-    // from: "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
-    // args: ["0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC"],
-    from: deployer,
-    args: [deployer],
-    log: true,
-    autoMine: true,
-  });
 
   await init(hre, {
     nft: nft,
@@ -106,16 +131,16 @@ async function init(hre: HardhatRuntimeEnvironment, tx: any) {
   // Define the recipient and URI
   // const recipient = "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC";
   const recipient = "0x127c2e9893d5569c12052fa8d9bcab31595a9de0";
-  const uri = ""; // you can leave it empty as the contract generates URIs
 
-  const txNFT = await nft.safeMint(tx.deployer, uri);
+  console.log("Mint some NFTs …");
+  const txNFT = await nft.safeMint(tx.deployer);
   await txNFT.wait();
   console.log(`Minted NFT ${randomFace()} #${0} Contract Owner`);
 
   // Mint the NFTs to my wallet
   for (let i = 0; i < 2; i++) {
     // change 5 to the number of NFTs you want to mint
-    const tx = await nft.safeMint(recipient, uri);
+    const tx = await nft.safeMint(recipient);
     await tx.wait();
     console.log(`Minted NFT ${randomFace()} #${i + 1} ` + recipient);
   }

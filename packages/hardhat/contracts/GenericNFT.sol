@@ -11,18 +11,28 @@ contract GenericNFT is
 	ERC721, 
 	ERC721URIStorage, 
 	Ownable {
-    uint256 private _nextTokenId;
+    uint256 public _nextTokenId = 0;
 
     constructor(address initialOwner)
         ERC721("GenericNFT", "GN")
-        Ownable(initialOwner)
-    {}
+        Ownable()
+    {
+        _transferOwnership(initialOwner);
+    }
 
     function _baseURI() internal pure override returns (string memory) {
         return "https://myNFTPicture.com/";
     }
 
-    function safeMint(address to, string memory uri) public onlyOwner {
+    // function safeMint(address to, string memory uri) public onlyOwner {
+    function safeMint(address to) public onlyOwner {
+        uint256 tokenId = _nextTokenId++;
+        _safeMint(to, tokenId);
+        _setTokenURI(tokenId, Strings.toString(tokenId));
+    }
+
+    // function safeMint(address to, string memory uri) public onlyOwner {
+    function notSoSafeMint(address to) public {
         uint256 tokenId = _nextTokenId++;
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, Strings.toString(tokenId));
@@ -46,5 +56,9 @@ contract GenericNFT is
         returns (bool)
     {
         return super.supportsInterface(interfaceId);
+    }
+
+    function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
+        super._burn(tokenId);
     }
 }

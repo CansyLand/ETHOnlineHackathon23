@@ -3450,7 +3450,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@openzeppelin/contracts@npm:5.0.0, @openzeppelin/contracts@npm:^5.0.0":
+"@openzeppelin/contracts@npm:4.9.3":
+  version: 4.9.3
+  resolution: "@openzeppelin/contracts@npm:4.9.3"
+  checksum: 4932063e733b35fa7669b9fe2053f69b062366c5c208b0c6cfa1ac451712100c78acff98120c3a4b88d94154c802be05d160d71f37e7d74cadbe150964458838
+  languageName: node
+  linkType: hard
+
+"@openzeppelin/contracts@npm:^5.0.0":
   version: 5.0.0
   resolution: "@openzeppelin/contracts@npm:5.0.0"
   checksum: b182288466dfa1c66e227dcd9761d3205f6451bec5c3550783cfd2f6224d67b45e3d7cb01d7f26fb07cc236bb9fb10ce84268a77c5a5ceafd900b938643f55cd
@@ -3719,7 +3726,7 @@ __metadata:
     "@nomicfoundation/hardhat-toolbox": ~2.0.0
     "@nomiclabs/hardhat-ethers": "npm:hardhat-deploy-ethers@~0.3.0-beta.13"
     "@nomiclabs/hardhat-etherscan": ~3.1.0
-    "@openzeppelin/contracts": 5.0.0
+    "@openzeppelin/contracts": 4.9.3
     "@typechain/ethers-v5": ~10.1.0
     "@typechain/hardhat": ~6.1.3
     "@types/eslint": ~8
@@ -4223,7 +4230,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tokenbound/sdk@npm:^0.3.9":
+"@tokenbound/sdk@npm:0.3.9":
   version: 0.3.9
   resolution: "@tokenbound/sdk@npm:0.3.9"
   dependencies:
@@ -15912,7 +15919,7 @@ __metadata:
     "@openzeppelin/contracts": ^5.0.0
     "@tableland/evm": ^4.3.0
     "@tableland/local": ^2.0.2
-    "@tokenbound/sdk": ^0.3.9
+    "@tokenbound/sdk": 0.3.9
     husky: ~8.0.3
     lint-staged: ~13.2.2
   languageName: unknown
@@ -17929,8 +17936,8 @@ __metadata:
   linkType: hard
 
 "viem@npm:^1.14.0":
-  version: 1.16.2
-  resolution: "viem@npm:1.16.2"
+  version: 1.16.4
+  resolution: "viem@npm:1.16.4"
   dependencies:
     "@adraffy/ens-normalize": 1.9.4
     "@noble/curves": 1.2.0
@@ -17945,7 +17952,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 579ed4ab4f4e623f90f21d1c52696a81d06c4cf11557a784019c314add34b0626870d35ecc8947fea1b65b9c414b1816dd556e11e1e76b2b989fefde7d7747c6
+  checksum: a9932a74be1f32e06d0bc823fdd46feea5954c2ef0060334550461974503e3811095af008fd10a039d369d830016c034bed36d4ededee29ac0fd5d460a57c69c
   languageName: node
   linkType: hard
 
