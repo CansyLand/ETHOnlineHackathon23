@@ -18,8 +18,22 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     with a random private key in the .env file (then used on hardhat.config.ts)
     You can run the `yarn account` command to check your balance in every network.
   */
+
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
+  const { ethers } = hre;
+
+  const [owner /*feeCollector, operator*/] = await ethers.getSigners();
+
+  // Send funs to burner walltes
+  const burnerWallets = ["0x3497ED4B61FC3006feAD44a9Fc6e306fe05Ea7fF"];
+  console.log("Send ETH to burner wallets 💸");
+  burnerWallets.forEach(async address => {
+    await owner.sendTransaction({
+      to: address,
+      value: ethers.utils.parseEther("2"), // Sends 10 ETH
+    });
+  });
 
   await deploy("YourContract", {
     from: deployer,

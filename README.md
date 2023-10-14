@@ -6,16 +6,30 @@ Init Submodules
 
 ```git submodule update --init --recursive```
 
+
+## A. set up Hardhat:
+
 Open your first terminal and start local blockchain node
 ``` yarn chain ```
 
 In the same directory open your second terminal and deploy your contracts on the local chain
 ``` yarn deploy ```
+or ``` yarn deploy --reset```
 
-Still in the same directory open your third terminal and start your frontend with: 
+## B. set up Tableland:
+
+Instead of hardhat you can spin up a Tableland node version which gives you access to a web3-native database
+``` yarn chainTL ```
+
+In the same directory open your second terminal and deploy your contracts on the local chain
+``` yarn deployTL ```
+or ``` yarn deployTL --reset```
+
+## start Frontend
+Still in root open your third terminal and start your frontend with: 
 ``` yarn start ```
 
-In your browser open h# 🏗 Scaffold-ETH 2
+# 🏗 Scaffold-ETH 2
 
 🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
 
