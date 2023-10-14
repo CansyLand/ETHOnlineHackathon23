@@ -7,6 +7,3 @@
 [submodule "packages/hardhat/lib/erc6551"]
 	path = packages/hardhat/lib/erc6551
 	url = https://github.com/erc6551/reference
-[submodule "packages/hardhat/lib/openzeppelin"]
-	path = packages/hardhat/lib/openzeppelin
-	url = https://github.com/openzeppelin/openzeppelin-contracts

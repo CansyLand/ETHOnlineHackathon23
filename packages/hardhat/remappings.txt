@@ -1,3 +1,4 @@
 openzeppelin-contracts/=lib/erc6551/lib/openzeppelin-contracts/contracts/
 erc6551/=lib/erc6551/src/
 account-abstraction/=lib/tokenbound/lib/account-abstraction/contracts/
+oppenzeppelin-5=lib/openzeppelin/contracts
