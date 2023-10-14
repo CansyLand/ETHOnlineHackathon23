@@ -2,9 +2,8 @@
 
 ## set up localy:
 
-go to /pfp-tournament
 
-In this directory open your first terminal and start local blockchain node
+Open your first terminal and start local blockchain node
 ``` yarn chain ```
 
 In the same directory open your second terminal and deploy your contracts on your local chain
