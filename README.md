@@ -2,11 +2,14 @@
 
 ## set up localy:
 
+Init Submodules
+
+```git submodule update --init --recursive```
 
 Open your first terminal and start local blockchain node
 ``` yarn chain ```
 
-In the same directory open your second terminal and deploy your contracts on your local chain
+In the same directory open your second terminal and deploy your contracts on the local chain
 ``` yarn deploy ```
 
 Still in the same directory open your third terminal and start your frontend with: 
