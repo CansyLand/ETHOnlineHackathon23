@@ -19,9 +19,12 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     You can run the `yarn account` command to check your balance in every network.
   */
 
-  const { deployer } = await hre.getNamedAccounts();
+  // const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
   const { ethers } = hre;
+
+  // convert the numeric literals to BigNumbers before performing arithmetic operations
+  const tenPow18 = ethers.BigNumber.from("10").pow(18);
 
   const [/*owner, feeCollector,*/ operator] = await ethers.getSigners();
 
@@ -35,28 +38,61 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     });
   });
 
+  const myDeployer = "0x14dC79964da2C08b23698B3D3cc7Ca32193d9955"; // account #7
+
   // deployer = "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
   await deploy("YourContract", {
-    from: deployer,
+    from: myDeployer,
     // Contract constructor arguments
-    args: [deployer],
+    args: [myDeployer],
     log: true,
     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
     // automatically mining the contract deployment transaction. There is no effect on live networks.
     autoMine: true,
   });
 
-  await deploy("FakeApeCoin", {
-    from: deployer,
+  const fakeApeCoin = await deploy("FakeApeCoin", {
+    from: myDeployer,
+    // args: [character.address],
     log: true,
     autoMine: true,
   });
 
+  const staking = await deploy("Staking", {
+    from: myDeployer,
+    args: [fakeApeCoin.address],
+    log: true,
+    autoMine: true,
+  });
+
+  const character = await deploy("Character", {
+    from: myDeployer,
+    args: [staking.address],
+    log: true,
+    autoMine: true,
+  });
+
+  // Send coins to Character RPG contract
+  console.log("Send coins to contract 💸");
+  const apeFactory = await hre.ethers.getContractFactory("FakeApeCoin");
+  const apeCoin = apeFactory.attach(fakeApeCoin.address);
+  const amountMint = tenPow18.mul(100000);
+  const txAPE = await apeCoin.mint(character.address, amountMint);
+  await txAPE.wait();
+
+  // Stake Coins
+  console.log("Stake coins 🏦");
+  const characterFactory = await hre.ethers.getContractFactory("Character");
+  const char = characterFactory.attach(character.address);
+  const amountStake = tenPow18.mul(100000);
+  const txChar = await char.stakeTokens(amountStake);
+  await txChar.wait();
+
   const nft = await deploy("GenericNFT", {
     // from: "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
     // args: ["0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC"],
-    from: deployer,
-    args: [deployer],
+    from: myDeployer,
+    args: [myDeployer],
     log: true,
     autoMine: true,
   });
@@ -64,13 +100,13 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   // This contract returns the address of NFTs personal account
   // const registry =
   await deploy("ERC6551Registry", {
-    from: deployer,
+    from: myDeployer,
     log: true,
     autoMine: true,
   });
 
   const guardian = await deploy("AccountGuardian", {
-    from: deployer,
+    from: myDeployer,
     log: true,
     autoMine: true,
   });
@@ -78,7 +114,7 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   // account-abstraction/core/EntryPoint.sol
   // Entrypoint for account abstraction erc4337
   const entryPoint = await deploy("EntryPoint", {
-    from: deployer,
+    from: myDeployer,
     // args: [guardian.address],
     log: true,
     autoMine: true,
@@ -86,7 +122,7 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
 
   // Tokenbound account implementation
   const accountImplementation = await deploy("Account", {
-    from: deployer,
+    from: myDeployer,
     args: [guardian.address, entryPoint.address],
     log: true,
     autoMine: true,
@@ -94,14 +130,14 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
 
   // This will route messages to the Account Implementation
   await deploy("AccountProxy", {
-    from: deployer,
+    from: myDeployer,
     args: [accountImplementation.address],
     log: true,
     autoMine: true,
   });
 
   await deploy("Tableland", {
-    from: deployer,
+    from: myDeployer,
     // Contract constructor arguments
     // args: [deployer],
     log: true,
@@ -114,7 +150,7 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     nft: nft,
     // registry: registry,
     // account: account,
-    deployer: deployer,
+    deployer: myDeployer,
   });
   // Get the deployed contract
   // const yourContract = await hre.ethers.getContract("YourContract", deployer);
