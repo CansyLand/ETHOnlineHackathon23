@@ -4,6 +4,8 @@ pragma solidity ^0.8.12;
 import "@tableland/evm/contracts/utils/TablelandDeployments.sol";
 import "@tableland/evm/contracts/utils/SQLHelpers.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
+// import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
+
 // Needed if the contract must own the table
 import "@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol";
 
@@ -47,6 +49,7 @@ function insert() public payable {
   *    'msg.sender'
   *  );
   */
+  uint256 numberOne = 1;
   TablelandDeployments.get().mutate(
     address(this),
     _tableId,
@@ -55,7 +58,7 @@ function insert() public payable {
       _tableId,
       "id,val",
       string.concat(
-        Strings.toString(1), // Convert to a string
+        Strings.toString(numberOne), // 🤏 This causes the error
         ",",
         SQLHelpers.quote("MyMessage") // Wrap strings in single quotes
         //SQLHelpers.quote(Strings.toHexString(msg.sender)) // Wrap strings in single quotes
@@ -75,7 +78,7 @@ function update(uint256 myId, string memory myVal) public payable {
   // Only update the row with the matching `id`
   string memory filters = string.concat(
     "id=",
-    Strings.toString(myId)
+    Strings.toString(myId) // 🤏 this causes no error
   );
   /*  Under the hood, SQL helpers formulates:
    *

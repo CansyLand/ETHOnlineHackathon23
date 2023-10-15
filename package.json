@@ -28,7 +28,6 @@
     "vercel": "yarn workspace @se-2/nextjs vercel",
     "vercel:yolo": "yarn workspace @se-2/nextjs vercel:yolo",
     "verify": "yarn workspace @se-2/hardhat verify",
-
     "accountTL": "yarn workspace @se-2/hardhat accountTL",
     "chainTL": "yarn workspace @se-2/hardhat chainTL",
     "deployTL": "yarn workspace @se-2/hardhat deployTL",

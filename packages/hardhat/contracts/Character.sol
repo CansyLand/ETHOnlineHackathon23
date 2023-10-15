@@ -1,26 +1,92 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.19;
 
-import "openzeppelin-5/contracts/token/ERC721/ERC721.sol";
-import "openzeppelin-5/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "openzeppelin-5/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "./Staking.sol";
+import "./CharacterTables.sol";
 
-contract Character is ERC721, ERC721URIStorage, Ownable {
+/*
+
+    soulbound
+    on withdraw burns
+    increase XP (staking reward / players in game)
+
+ */
+
+
+contract Character is
+        ERC721,
+        ERC721Burnable,
+        ERC721URIStorage,
+        Ownable,
+        CharacterTables
+    {
     uint256 private _nextTokenId;
+    uint256 private _totalStaked;
+    mapping(address => uint256) private _balances;
+    Staking stakingContract;
 
-    constructor(address initialOwner)
+    constructor(address _stakingContract)
         ERC721("Character", "RPG")
-        Ownable(initialOwner)
-    {}
-
-    function _baseURI() internal pure override returns (string memory) {
-        return "https://mywebsite.com";
+        Ownable()
+    {
+        stakingContract = Staking(_stakingContract);
+        _create();  // create tableland database table
     }
 
-    function safeMint(address to, string memory uri) public onlyOwner {
+    function _baseURI() internal pure override returns (string memory) {
+        return "https://MyURL.com";
+    }
+
+    function safeMint(address to) public onlyOwner {
         uint256 tokenId = _nextTokenId++;
+        _initCharacter(tokenId); // Creates new entry in DB
         _safeMint(to, tokenId);
-        _setTokenURI(tokenId, uri);
+    }
+
+    /**
+    *   @dev rewardShare is between 0 - 255
+    *       it is divides between winner and loser
+    *       example = winner 180 loser 75
+    *
+    *       each arena can decide on own rules
+    *
+    *    &fureDev    // higher rewards for verified players -> galaxy pass
+    *                // zk verify over twitter?
+    *
+     */
+     // address playerA, address playerB
+    function gameResult(uint256 tokenIdA, uint256 tokenIdB, uint8 rewardShareA, uint8 playersInGame) external {
+        // get stake rewards amount
+        uint256 newTotalStake = stakingContract.calculateRewards(address(this));
+        uint256 stakingRewards = newTotalStake - _totalStaked;
+
+        // calculate proportion of reward
+        uint256 totalPlayersReward = stakingRewards / playersInGame;
+
+        // calculate percentage of reward
+        uint256 playerRewardA = (totalPlayersReward * rewardShareA) / 255;
+        uint256 playerRewardB = totalPlayersReward - playerRewardA;
+
+        bool winnerA;
+        bool winnerB;
+        if (playerRewardA > playerRewardB) {
+            winnerA = true;
+            winnerB = false;
+        } else {
+            winnerA = false;
+            winnerB = true;
+        }
+        // add reward to characters XP in table
+        // ⚠️ Better to combine writes into one
+        _updateCharacter( tokenIdA, winnerA, playerRewardA);
+        _updateCharacter( tokenIdB, winnerB, playerRewardB);
+
+        _totalStaked = newTotalStake;
     }
 
     // The following functions are overrides required by Solidity.
@@ -41,5 +107,34 @@ contract Character is ERC721, ERC721URIStorage, Ownable {
         returns (bool)
     {
         return super.supportsInterface(interfaceId);
+    }
+
+    function _burn(uint256 tokenId)
+        internal
+        virtual
+        override(ERC721, ERC721URIStorage) {
+        // will call _burn in ERC721URIStorage
+        // which will in return call _burn in ERC721
+        super._burn(tokenId); 
+        
+    }
+
+
+    // ERC-20
+    function receiveTokens(IERC20 token, uint256 amount) public {
+        require(token.transferFrom(msg.sender, address(this), amount), "Transfer failed");
+        _balances[address(token)] += amount;
+    }
+
+    function getTokenBalance(IERC20 token) public view returns (uint256) {
+        return _balances[address(token)];
+    }
+
+    function stakeTokens(uint256 amount) external {
+        stakingContract.stake(amount);
+    }
+
+    function totalStaked() view external {
+        stakingContract.calculateRewards(address(this));
     }
 }
