@@ -4123,6 +4123,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tableland/evm@github:CansyLand/evm-tableland#main":
+  version: 0.0.0
+  resolution: "@tableland/evm@https://github.com/CansyLand/evm-tableland.git#commit=2c0ad1473938f27fe0016cd554c2ea950b97a7f0"
+  dependencies:
+    "@openzeppelin/contracts": 4.9.3
+  checksum: 0751fd3fe9791bffe83ccf71a09f1643f078c304c131fab9e0a2b133b9288ee3c22bd896d86982a76b114009dfb9a7ee6750445e09de5228836a7cfe837d1155
+  languageName: node
+  linkType: hard
+
 "@tableland/evm@npm:^4.3.0":
   version: 4.3.0
   resolution: "@tableland/evm@npm:4.3.0"
@@ -15917,7 +15926,7 @@ __metadata:
   resolution: "se-2@workspace:."
   dependencies:
     "@openzeppelin/contracts": ^5.0.0
-    "@tableland/evm": ^4.3.0
+    "@tableland/evm": "github:CansyLand/evm-tableland#main"
     "@tableland/local": ^2.0.2
     "@tokenbound/sdk": 0.3.9
     husky: ~8.0.3

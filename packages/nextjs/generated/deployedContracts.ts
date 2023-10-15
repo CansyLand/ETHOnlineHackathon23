@@ -5,7 +5,7 @@ const contracts = {
       name: "localhost",
       contracts: {
         Account: {
-          address: "0x610178dA211FEF7D417bC0e6FeD39F05609AD788",
+          address: "0x4ed7c70F96B99c776995fB64377f0d4aB3B0e1C1",
           abi: [
             {
               inputs: [
@@ -758,7 +758,7 @@ const contracts = {
           ],
         },
         AccountGuardian: {
-          address: "0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6",
+          address: "0xc6e7DF5E7b4f2A278906862b61205850344D4e7d",
           abi: [
             {
               anonymous: false,
@@ -966,7 +966,7 @@ const contracts = {
           ],
         },
         AccountProxy: {
-          address: "0xB7f8BC63BbcaD18155201308C8f3540b07f84F5e",
+          address: "0x322813Fd9A801c5507c9de605d63CEA4f2CE6c44",
           abi: [
             {
               inputs: [
@@ -1060,7 +1060,7 @@ const contracts = {
           ],
         },
         ERC6551Registry: {
-          address: "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853",
+          address: "0x3Aa5ebB10DC797CAC828524e59A333d0A371443c",
           abi: [
             {
               inputs: [],
@@ -1196,7 +1196,7 @@ const contracts = {
           ],
         },
         EntryPoint: {
-          address: "0x8A791620dd6260079BF849Dc5567aDC3F2FdC318",
+          address: "0x59b670e9fA9D0A427751Af201D676719a970857b",
           abi: [
             {
               inputs: [
@@ -2508,7 +2508,7 @@ const contracts = {
           ],
         },
         FakeApeCoin: {
-          address: "0x5FC8d32690cc91D4c39d9d3abcBD16989F875707",
+          address: "0x9A9f2CCfdE556A7E9Ff0848998Aa4a0CFD8863AE",
           abi: [
             {
               inputs: [],
@@ -2788,7 +2788,7 @@ const contracts = {
           ],
         },
         GenericNFT: {
-          address: "0x0165878A594ca255338adfa4d48449f69242Eb8F",
+          address: "0x68B1D87F95878fE05B998F19b66F4baba5De1aed",
           abi: [
             {
               inputs: [
@@ -3256,8 +3256,90 @@ const contracts = {
             },
           ],
         },
+        Tableland: {
+          address: "0xa85233C63b9Ee964Add6F2cffe00Fd84eb32338f",
+          abi: [
+            {
+              inputs: [
+                {
+                  internalType: "uint256",
+                  name: "chainid",
+                  type: "uint256",
+                },
+              ],
+              name: "ChainNotSupported",
+              type: "error",
+            },
+            {
+              inputs: [],
+              name: "create",
+              outputs: [],
+              stateMutability: "payable",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "insert",
+              outputs: [],
+              stateMutability: "payable",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "",
+                  type: "address",
+                },
+                {
+                  internalType: "address",
+                  name: "",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+                {
+                  internalType: "bytes",
+                  name: "",
+                  type: "bytes",
+                },
+              ],
+              name: "onERC721Received",
+              outputs: [
+                {
+                  internalType: "bytes4",
+                  name: "",
+                  type: "bytes4",
+                },
+              ],
+              stateMutability: "nonpayable",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "uint256",
+                  name: "myId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "string",
+                  name: "myVal",
+                  type: "string",
+                },
+              ],
+              name: "update",
+              outputs: [],
+              stateMutability: "payable",
+              type: "function",
+            },
+          ],
+        },
         YourContract: {
-          address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
+          address: "0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1",
           abi: [
             {
               inputs: [

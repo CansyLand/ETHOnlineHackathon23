@@ -23,18 +23,19 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   const { deploy } = hre.deployments;
   const { ethers } = hre;
 
-  const [owner /*feeCollector, operator*/] = await ethers.getSigners();
+  const [/*owner, feeCollector,*/ operator] = await ethers.getSigners();
 
   // Send funs to burner walltes
   const burnerWallets = ["0x3497ED4B61FC3006feAD44a9Fc6e306fe05Ea7fF"];
   console.log("Send ETH to burner wallets 💸");
   burnerWallets.forEach(async address => {
-    await owner.sendTransaction({
+    await operator.sendTransaction({
       to: address,
       value: ethers.utils.parseEther("2"), // Sends 10 ETH
     });
   });
 
+  // deployer = "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
   await deploy("YourContract", {
     from: deployer,
     // Contract constructor arguments
@@ -99,15 +100,15 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     autoMine: true,
   });
 
-  // await deploy("Tableland", {
-  //   from: deployer,
-  //   // Contract constructor arguments
-  //   // args: [deployer],
-  //   log: true,
-  //   // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
-  //   // automatically mining the contract deployment transaction. There is no effect on live networks.
-  //   autoMine: true,
-  // });
+  await deploy("Tableland", {
+    from: deployer,
+    // Contract constructor arguments
+    // args: [deployer],
+    log: true,
+    // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
+    // automatically mining the contract deployment transaction. There is no effect on live networks.
+    autoMine: true,
+  });
 
   await init(hre, {
     nft: nft,

@@ -12,7 +12,6 @@
     "lint-staged": "eslint --config ./.eslintrc.json --ignore-path ./.eslintignore",
     "test": "REPORT_GAS=true hardhat test --network hardhat",
     "verify": "hardhat etherscan-verify",
-
     "accountTL": "hardhat run scripts/listAccount.ts --network localhost",
     "chainTL": "local-tableland",
     "deployTL": "hardhat deploy --network localhost",
