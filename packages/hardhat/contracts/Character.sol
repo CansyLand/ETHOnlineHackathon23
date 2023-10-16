@@ -11,6 +11,7 @@ import "./CharacterTables.sol";
 
 /*
 
+    each address can hold only one NFT
     soulbound
     on withdraw burns
     increase XP (staking reward / players in game)
@@ -27,13 +28,20 @@ contract Character is
     {
     uint256 private _nextTokenId;
     uint256 private _totalStaked;
-    mapping(address => uint256) private _balances;
+    address private _apeCoin;
+    address private _staking;
+
     Staking stakingContract;
 
-    constructor(address _stakingContract)
+    mapping(address => uint256) private _balances;
+    
+
+    constructor(address _apeCoinAddress, address _stakingContract)
         ERC721("Character", "RPG")
         Ownable()
     {
+        _apeCoin = _apeCoinAddress;
+        _staking = _stakingContract;
         stakingContract = Staking(_stakingContract);
         _create();  // create tableland database table
     }
@@ -42,10 +50,20 @@ contract Character is
         return "https://MyURL.com";
     }
 
-    function safeMint(address to) public onlyOwner {
+    function mintAsToken() external {
+        // checks if contract caller is an ERC-6551 contract owned by NFT
+        //  function token()
+    }
+
+    function safeMint(address to) public {
+        require(balanceOf(to) == 0, "Address already owns an NFT");
         uint256 tokenId = _nextTokenId++;
-        _initCharacter(tokenId); // Creates new entry in DB
+        _initCharacter(tokenId); // Creates new entry in DB // 🤔 add require?
         _safeMint(to, tokenId);
+    }
+
+    function transferFrom(address from, address to, uint256 tokenId) public virtual override(ERC721, IERC721) {
+        require(false, "This NFT is soulbound");
     }
 
     /**
@@ -131,7 +149,10 @@ contract Character is
     }
 
     function stakeTokens(uint256 amount) external {
-        stakingContract.stake(amount);
+        IERC20 token = IERC20(_apeCoin);
+        require(token.approve(_staking, amount), "Approval failed");
+        require(stakingContract.stake(amount), "Stake failed");
+        _totalStaked += amount;
     }
 
     function totalStaked() view external {

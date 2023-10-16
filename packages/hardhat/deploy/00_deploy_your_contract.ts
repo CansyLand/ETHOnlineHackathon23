@@ -67,7 +67,7 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
 
   const character = await deploy("Character", {
     from: myDeployer,
-    args: [staking.address],
+    args: [fakeApeCoin.address, staking.address],
     log: true,
     autoMine: true,
   });
@@ -88,7 +88,8 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   const txChar = await char.stakeTokens(amountStake);
   await txChar.wait();
 
-  const nft = await deploy("GenericNFT", {
+  // const nft =
+  await deploy("GenericNFT", {
     // from: "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
     // args: ["0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC"],
     from: myDeployer,
@@ -146,12 +147,13 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     autoMine: true,
   });
 
-  await init(hre, {
-    nft: nft,
-    // registry: registry,
-    // account: account,
-    deployer: myDeployer,
-  });
+  // This is the function below
+  // await init(hre, {
+  //   nft: nft,
+  //   // registry: registry,
+  //   // account: account,
+  //   deployer: myDeployer,
+  // });
   // Get the deployed contract
   // const yourContract = await hre.ethers.getContract("YourContract", deployer);
 };
@@ -162,74 +164,74 @@ export default deployYourContract;
 // e.g. yarn deploy --tags YourContract
 deployYourContract.tags = ["YourContract"];
 
-async function init(hre: HardhatRuntimeEnvironment, tx: any) {
-  /**
-   * 0. SUPER IMPORTANT STUFF
-   */
-  function randomFace() {
-    const animalFaces = ["😺", "🐶", "🦁", "🐯", "🐻", "🐮", "🐵", "🐼", "🐷", "🐸", "🐨"];
-    return animalFaces[Math.floor(Math.random() * animalFaces.length)];
-  }
+// async function init(hre: HardhatRuntimeEnvironment, tx: any) {
+//   /**
+//    * 0. SUPER IMPORTANT STUFF
+//    */
+//   // function randomFace() {
+//   //   const animalFaces = ["😺", "🐶", "🦁", "🐯", "🐻", "🐮", "🐵", "🐼", "🐷", "🐸", "🐨"];
+//   //   return animalFaces[Math.floor(Math.random() * animalFaces.length)];
+//   // }
 
-  /**
-   * 1. MINT SOME NFTS
-   */
+//   /**
+//    * 1. MINT SOME NFTS
+//    */
 
-  // Get the contract instance
-  const GenericNFT = await hre.ethers.getContractFactory("GenericNFT");
-  const nft = GenericNFT.attach(tx.nft.address);
+//   // Get the contract instance
+//   const GenericNFT = await hre.ethers.getContractFactory("GenericNFT");
+//   const nft = GenericNFT.attach(tx.nft.address);
 
-  // Define the recipient and URI
-  // const recipient = "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC";
-  const recipient = "0x127c2e9893d5569c12052fa8d9bcab31595a9de0";
+//   // Define the recipient and URI
+//   // const recipient = "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC";
+//   const recipient = "0x127c2e9893d5569c12052fa8d9bcab31595a9de0";
 
-  console.log("Mint some NFTs …");
-  const txNFT = await nft.safeMint(tx.deployer);
-  await txNFT.wait();
-  console.log(`Minted NFT ${randomFace()} #${0} Contract Owner`);
+//   console.log("Mint some NFTs …");
+//   const txNFT = await nft.notSoSafeMint(tx.deployer);
+//   await txNFT.wait();
+//   console.log(`Minted NFT ${randomFace()} #${0} Contract Owner`);
 
-  // Mint the NFTs to my wallet
-  for (let i = 0; i < 2; i++) {
-    // change 5 to the number of NFTs you want to mint
-    const tx = await nft.safeMint(recipient);
-    await tx.wait();
-    console.log(`Minted NFT ${randomFace()} #${i + 1} ` + recipient);
-  }
+//   // Mint the NFTs to my wallet
+//   for (let i = 0; i < 2; i++) {
+//     // change 5 to the number of NFTs you want to mint
+//     const tx = await nft.notSoSafeMint(recipient);
+//     await tx.wait();
+//     console.log(`Minted NFT ${randomFace()} #${i + 1} ` + recipient);
+//   }
 
-  // /**
-  //  * 2. MINT TOKENBOUND ACCOUNT
-  //  */
-  // // Provided data
-  // const registryAddress = tx.registry.address;
-  // const implementationAddress = tx.account.address;
-  // const chainId = 31337;
-  // const tokenContractAddress = tx.nft.address;
-  // const tokenId = 1; // Creator owns 0, I own 1 - 5
-  // const salt = 0;
-  // const initData = "0x"; // replace with your initialization data if any
+//   // /**
+//   //  * 2. MINT TOKENBOUND ACCOUNT
+//   //  */
+//   // // Provided data
+//   // const registryAddress = tx.registry.address;
+//   // const implementationAddress = tx.account.address;
+//   // const chainId = 31337;
+//   // const tokenContractAddress = tx.nft.address;
+//   // const tokenId = 1; // Creator owns 0, I own 1 - 5
+//   // const salt = 0;
+//   // const initData = "0x"; // replace with your initialization data if any
 
-  // // Get signer (account) to interact with the contract
-  // const [signer] = await hre.ethers.getSigners();
-  // console.log("Using account:", signer.address);
+//   // // Get signer (account) to interact with the contract
+//   // const [signer] = await hre.ethers.getSigners();
+//   // console.log("Using account:", signer.address);
 
-  // // Get the contract instance
-  // const ERC6551Registry = await hre.ethers.getContractFactory("ERC6551Registry");
-  // const registry = ERC6551Registry.attach(registryAddress);
+//   // // Get the contract instance
+//   // const ERC6551Registry = await hre.ethers.getContractFactory("ERC6551Registry");
+//   // const registry = ERC6551Registry.attach(registryAddress);
 
-  // // Create token-bound account
-  // const txTokenBound = await registry
-  //   .connect(signer)
-  //   .createAccount(implementationAddress, chainId, tokenContractAddress, tokenId, salt, initData);
-  // const receipt = await txTokenBound.wait();
+//   // // Create token-bound account
+//   // const txTokenBound = await registry
+//   //   .connect(signer)
+//   //   .createAccount(implementationAddress, chainId, tokenContractAddress, tokenId, salt, initData);
+//   // const receipt = await txTokenBound.wait();
 
-  // // Log the created account address from the emitted event
-  // const event = receipt.events.find((e: any) => e.event === "AccountCreated");
-  // if (event) {
-  //   console.log("Token-bound account created at:", event.address);
-  // } else {
-  //   console.error("Failed to create token-bound account");
-  // }
-}
+//   // // Log the created account address from the emitted event
+//   // const event = receipt.events.find((e: any) => e.event === "AccountCreated");
+//   // if (event) {
+//   //   console.log("Token-bound account created at:", event.address);
+//   // } else {
+//   //   console.error("Failed to create token-bound account");
+//   // }
+// }
 
 //  Account #0: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 (10000 ETH)
 //  Private Key: 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80

@@ -66,11 +66,11 @@ contract CharacterTables is ERC721Holder {
             address(this), //msg.sender,
             SQLHelpers.toCreateFromSchema(
                 string.concat(
-                    "i int primary key", // "id integer primary key," // Notice the trailing comma
+                    "i int primary key,", // "id integer primary key," // Notice the trailing comma
                     "x int,",   // xp
                     "s int,",   // strength
-                    "e int",    // endurance
-                    "w int",    // wins
+                    "e int,",    // endurance
+                    "w int,",    // wins
                     "l int"),   // losses
             _TABLE_PREFIX
             )

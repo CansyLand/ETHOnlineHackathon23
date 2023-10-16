@@ -9,21 +9,23 @@ import { useAccount } from "wagmi";
 import { Address } from "~~/components/scaffold-eth";
 import { useScaffoldContract } from "~~/hooks/scaffold-eth";
 
-// import contracts from '~~/generated/deployedContracts'
+//  Get NFT balanceOf this wallet address
+//  get `token IDs` for this account (tokenOfOwnerByIndex)
+//  call registry to get tokenbound account address by `token ID`
+//  use tokenbound address to mint RPG NFT
+//  try to transfer this RPG NFT -> Display conrtacts message
 
-// import { hardhat } from 'viem/chains'
-// const {} = useScaffoldContract({
-//     contractName: 'ERC6551Registry'
-// })
+//  Read and display RPG stats
 
-// const tokenContract = fakeApe.data?.address
+//  Display NFTs items
+//  Select 6 items
+//  Send NFT to arena
+//  play
+//  Get rewards
+//  burn RPG NFT
 
-// console.log("TOKENCONRACT:")
-// console.log(tokenContract)
-
-// const tokenContract = deployedContracts.FakeApeCoin.address
-// const implementationAddress = deployedContracts.SimpleERC6551Account.address
-// const registryAddress = deployedContracts.ERC6551Registry.address
+//  buy booster erc 1155
+//  move, equipment, potion
 
 const chainId = 31337;
 const tokenId = "1";

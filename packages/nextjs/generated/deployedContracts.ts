@@ -5,7 +5,7 @@ const contracts = {
       name: "localhost",
       contracts: {
         Account: {
-          address: "0x4ed7c70F96B99c776995fB64377f0d4aB3B0e1C1",
+          address: "0xb27310b1DA4Ef23171951F6f2466AA22eB4A1b8b",
           abi: [
             {
               inputs: [
@@ -758,7 +758,7 @@ const contracts = {
           ],
         },
         AccountGuardian: {
-          address: "0xc6e7DF5E7b4f2A278906862b61205850344D4e7d",
+          address: "0xc358A28AD6EB56403924eCa5aB3fD4F2FD2dFF70",
           abi: [
             {
               anonymous: false,
@@ -966,7 +966,7 @@ const contracts = {
           ],
         },
         AccountProxy: {
-          address: "0x322813Fd9A801c5507c9de605d63CEA4f2CE6c44",
+          address: "0x465Dc96893ec73E2320bC4d5a7cE28A453E8DecA",
           abi: [
             {
               inputs: [
@@ -1060,12 +1060,34 @@ const contracts = {
           ],
         },
         Character: {
-          address: "0xa82fF9aFd8f496c3d6ac40E2a0F282E47488CFc9",
+          address: "0x822De78A3f3d6EFd5FCdD7c6D7c6D1D339D2e561",
           abi: [
             {
-              inputs: [],
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "_apeCoinAddress",
+                  type: "address",
+                },
+                {
+                  internalType: "address",
+                  name: "_stakingContract",
+                  type: "address",
+                },
+              ],
               stateMutability: "nonpayable",
               type: "constructor",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "uint256",
+                  name: "chainid",
+                  type: "uint256",
+                },
+              ],
+              name: "ChainNotSupported",
+              type: "error",
             },
             {
               anonymous: false,
@@ -1121,6 +1143,38 @@ const contracts = {
               anonymous: false,
               inputs: [
                 {
+                  indexed: false,
+                  internalType: "uint256",
+                  name: "_fromTokenId",
+                  type: "uint256",
+                },
+                {
+                  indexed: false,
+                  internalType: "uint256",
+                  name: "_toTokenId",
+                  type: "uint256",
+                },
+              ],
+              name: "BatchMetadataUpdate",
+              type: "event",
+            },
+            {
+              anonymous: false,
+              inputs: [
+                {
+                  indexed: false,
+                  internalType: "uint256",
+                  name: "_tokenId",
+                  type: "uint256",
+                },
+              ],
+              name: "MetadataUpdate",
+              type: "event",
+            },
+            {
+              anonymous: false,
+              inputs: [
+                {
                   indexed: true,
                   internalType: "address",
                   name: "previousOwner",
@@ -1160,6 +1214,49 @@ const contracts = {
               ],
               name: "Transfer",
               type: "event",
+            },
+            {
+              inputs: [],
+              name: "_create",
+              outputs: [],
+              stateMutability: "payable",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "uint256",
+                  name: "tokenId",
+                  type: "uint256",
+                },
+              ],
+              name: "_initCharacter",
+              outputs: [],
+              stateMutability: "payable",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "uint256",
+                  name: "tokenId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "bool",
+                  name: "win",
+                  type: "bool",
+                },
+                {
+                  internalType: "uint256",
+                  name: "reward",
+                  type: "uint256",
+                },
+              ],
+              name: "_updateCharacter",
+              outputs: [],
+              stateMutability: "payable",
+              type: "function",
             },
             {
               inputs: [
@@ -1215,6 +1312,34 @@ const contracts = {
               inputs: [
                 {
                   internalType: "uint256",
+                  name: "tokenIdA",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "tokenIdB",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint8",
+                  name: "rewardShareA",
+                  type: "uint8",
+                },
+                {
+                  internalType: "uint8",
+                  name: "playersInGame",
+                  type: "uint8",
+                },
+              ],
+              name: "gameResult",
+              outputs: [],
+              stateMutability: "nonpayable",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "uint256",
                   name: "tokenId",
                   type: "uint256",
                 },
@@ -1225,6 +1350,25 @@ const contracts = {
                   internalType: "address",
                   name: "",
                   type: "address",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "contract IERC20",
+                  name: "token",
+                  type: "address",
+                },
+              ],
+              name: "getTokenBalance",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
                 },
               ],
               stateMutability: "view",
@@ -1256,6 +1400,13 @@ const contracts = {
             },
             {
               inputs: [],
+              name: "mintAsToken",
+              outputs: [],
+              stateMutability: "nonpayable",
+              type: "function",
+            },
+            {
+              inputs: [],
               name: "name",
               outputs: [
                 {
@@ -1265,6 +1416,40 @@ const contracts = {
                 },
               ],
               stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "",
+                  type: "address",
+                },
+                {
+                  internalType: "address",
+                  name: "",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+                {
+                  internalType: "bytes",
+                  name: "",
+                  type: "bytes",
+                },
+              ],
+              name: "onERC721Received",
+              outputs: [
+                {
+                  internalType: "bytes4",
+                  name: "",
+                  type: "bytes4",
+                },
+              ],
+              stateMutability: "nonpayable",
               type: "function",
             },
             {
@@ -1297,6 +1482,24 @@ const contracts = {
                 },
               ],
               stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "contract IERC20",
+                  name: "token",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "amount",
+                  type: "uint256",
+                },
+              ],
+              name: "receiveTokens",
+              outputs: [],
+              stateMutability: "nonpayable",
               type: "function",
             },
             {
@@ -1391,6 +1594,19 @@ const contracts = {
             {
               inputs: [
                 {
+                  internalType: "uint256",
+                  name: "amount",
+                  type: "uint256",
+                },
+              ],
+              name: "stakeTokens",
+              outputs: [],
+              stateMutability: "nonpayable",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
                   internalType: "bytes4",
                   name: "interfaceId",
                   type: "bytes4",
@@ -1440,6 +1656,13 @@ const contracts = {
               type: "function",
             },
             {
+              inputs: [],
+              name: "totalStaked",
+              outputs: [],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
               inputs: [
                 {
                   internalType: "address",
@@ -1478,7 +1701,7 @@ const contracts = {
           ],
         },
         ERC6551Registry: {
-          address: "0x3Aa5ebB10DC797CAC828524e59A333d0A371443c",
+          address: "0x0a401cf95D809dAA64282F5A78629F3f7E2d5871",
           abi: [
             {
               inputs: [],
@@ -1614,7 +1837,7 @@ const contracts = {
           ],
         },
         EntryPoint: {
-          address: "0x59b670e9fA9D0A427751Af201D676719a970857b",
+          address: "0x0a49923d13ab698cfC0e747b5b9594C16C8d130F",
           abi: [
             {
               inputs: [
@@ -2926,12 +3149,28 @@ const contracts = {
           ],
         },
         FakeApeCoin: {
-          address: "0x9A9f2CCfdE556A7E9Ff0848998Aa4a0CFD8863AE",
+          address: "0x15c13b5cC3bcD3736d26D73f9b494162C64F4813",
           abi: [
             {
               inputs: [],
               stateMutability: "nonpayable",
               type: "constructor",
+            },
+            {
+              inputs: [],
+              name: "InvalidShortString",
+              type: "error",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "string",
+                  name: "str",
+                  type: "string",
+                },
+              ],
+              name: "StringTooLong",
+              type: "error",
             },
             {
               anonymous: false,
@@ -2960,6 +3199,31 @@ const contracts = {
             },
             {
               anonymous: false,
+              inputs: [],
+              name: "EIP712DomainChanged",
+              type: "event",
+            },
+            {
+              anonymous: false,
+              inputs: [
+                {
+                  indexed: true,
+                  internalType: "address",
+                  name: "previousOwner",
+                  type: "address",
+                },
+                {
+                  indexed: true,
+                  internalType: "address",
+                  name: "newOwner",
+                  type: "address",
+                },
+              ],
+              name: "OwnershipTransferred",
+              type: "event",
+            },
+            {
+              anonymous: false,
               inputs: [
                 {
                   indexed: true,
@@ -2982,6 +3246,19 @@ const contracts = {
               ],
               name: "Transfer",
               type: "event",
+            },
+            {
+              inputs: [],
+              name: "DOMAIN_SEPARATOR",
+              outputs: [
+                {
+                  internalType: "bytes32",
+                  name: "",
+                  type: "bytes32",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
             },
             {
               inputs: [
@@ -3088,6 +3365,49 @@ const contracts = {
               type: "function",
             },
             {
+              inputs: [],
+              name: "eip712Domain",
+              outputs: [
+                {
+                  internalType: "bytes1",
+                  name: "fields",
+                  type: "bytes1",
+                },
+                {
+                  internalType: "string",
+                  name: "name",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "version",
+                  type: "string",
+                },
+                {
+                  internalType: "uint256",
+                  name: "chainId",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "verifyingContract",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "salt",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "uint256[]",
+                  name: "extensions",
+                  type: "uint256[]",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
               inputs: [
                 {
                   internalType: "address",
@@ -3112,6 +3432,24 @@ const contracts = {
               type: "function",
             },
             {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "to",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "amount",
+                  type: "uint256",
+                },
+              ],
+              name: "mint",
+              outputs: [],
+              stateMutability: "nonpayable",
+              type: "function",
+            },
+            {
               inputs: [],
               name: "name",
               outputs: [
@@ -3122,6 +3460,88 @@ const contracts = {
                 },
               ],
               stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "owner",
+                  type: "address",
+                },
+              ],
+              name: "nonces",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "owner",
+              outputs: [
+                {
+                  internalType: "address",
+                  name: "",
+                  type: "address",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "owner",
+                  type: "address",
+                },
+                {
+                  internalType: "address",
+                  name: "spender",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "value",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "deadline",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint8",
+                  name: "v",
+                  type: "uint8",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "r",
+                  type: "bytes32",
+                },
+                {
+                  internalType: "bytes32",
+                  name: "s",
+                  type: "bytes32",
+                },
+              ],
+              name: "permit",
+              outputs: [],
+              stateMutability: "nonpayable",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "renounceOwnership",
+              outputs: [],
+              stateMutability: "nonpayable",
               type: "function",
             },
             {
@@ -3203,10 +3623,23 @@ const contracts = {
               stateMutability: "nonpayable",
               type: "function",
             },
+            {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "newOwner",
+                  type: "address",
+                },
+              ],
+              name: "transferOwnership",
+              outputs: [],
+              stateMutability: "nonpayable",
+              type: "function",
+            },
           ],
         },
         GenericNFT: {
-          address: "0x68B1D87F95878fE05B998F19b66F4baba5De1aed",
+          address: "0x5c05bfe88c422B98A92C777fD27B492E073dD48A",
           abi: [
             {
               inputs: [
@@ -3621,6 +4054,49 @@ const contracts = {
               inputs: [
                 {
                   internalType: "uint256",
+                  name: "index",
+                  type: "uint256",
+                },
+              ],
+              name: "tokenByIndex",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "owner",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "index",
+                  type: "uint256",
+                },
+              ],
+              name: "tokenOfOwnerByIndex",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "uint256",
                   name: "tokenId",
                   type: "uint256",
                 },
@@ -3631,6 +4107,19 @@ const contracts = {
                   internalType: "string",
                   name: "",
                   type: "string",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "totalSupply",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
                 },
               ],
               stateMutability: "view",
@@ -3674,8 +4163,120 @@ const contracts = {
             },
           ],
         },
+        Staking: {
+          address: "0x31Bc16fF000d4f33eC33212B7BBc698842cBC587",
+          abi: [
+            {
+              inputs: [
+                {
+                  internalType: "contract IERC20",
+                  name: "_stakingToken",
+                  type: "address",
+                },
+              ],
+              stateMutability: "nonpayable",
+              type: "constructor",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "account",
+                  type: "address",
+                },
+              ],
+              name: "calculateRewards",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "uint256",
+                  name: "amount",
+                  type: "uint256",
+                },
+              ],
+              name: "stake",
+              outputs: [
+                {
+                  internalType: "bool",
+                  name: "",
+                  type: "bool",
+                },
+              ],
+              stateMutability: "nonpayable",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "",
+                  type: "address",
+                },
+              ],
+              name: "stakedBlock",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "",
+                  type: "address",
+                },
+              ],
+              name: "stakes",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "stakingToken",
+              outputs: [
+                {
+                  internalType: "contract IERC20",
+                  name: "",
+                  type: "address",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "withdraw",
+              outputs: [],
+              stateMutability: "nonpayable",
+              type: "function",
+            },
+          ],
+        },
         Tableland: {
-          address: "0xa85233C63b9Ee964Add6F2cffe00Fd84eb32338f",
+          address: "0x319ABb6d316b9045099AB78b3E038Ea169159cDD",
           abi: [
             {
               inputs: [
@@ -3757,7 +4358,7 @@ const contracts = {
           ],
         },
         YourContract: {
-          address: "0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1",
+          address: "0x8b82485457dAF46762dc35D98Fb4180487dFC4dE",
           abi: [
             {
               inputs: [
