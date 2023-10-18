@@ -43,10 +43,13 @@ contract CharacterTables is ERC721Holder {
         _;
     }
 
+    function tableId() public view returns(uint256) {
+        return _tableId; // ❌❌❌❌❌ does not return ? debug
+    }
 
     // constructor() {}
 
-    function _create() public payable {
+    function _create() public payable returns(uint256) {
         /*  Under the hood, SQL helpers formulates:
         *
         *  CREATE TABLE {prefix}_{chainId} (
@@ -75,6 +78,7 @@ contract CharacterTables is ERC721Holder {
             _TABLE_PREFIX
             )
         );
+        return _tableId;
     }
 
     function _initCharacter(uint256 tokenId) public payable {
@@ -95,7 +99,7 @@ contract CharacterTables is ERC721Holder {
             string.concat(
                 Strings.toString(tokenId), // Convert to a string
                 ",0,3,3,0,0"
-            )
+                )
             )
         );
     }

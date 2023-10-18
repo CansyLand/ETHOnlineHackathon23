@@ -7,8 +7,12 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "./Staking.sol";
+import "./Tokenbound/Account.sol";
 import "./CharacterTables.sol";
 
+
+// Useful for debugging. Remove when deploying to a live network. ❌
+import "hardhat/console.sol";
 /*
 
     each address can hold only one NFT
@@ -32,6 +36,7 @@ contract Character is
     address private _staking;
 
     Staking stakingContract;
+    Account accountImplementation;
 
     mapping(address => uint256) private _balances;
     
@@ -50,16 +55,31 @@ contract Character is
         return "https://MyURL.com";
     }
 
-    function mintAsToken() external {
-        // checks if contract caller is an ERC-6551 contract owned by NFT
-        //  function token()
-    }
+    // function mintToTokenbound(address payable to) external returns(uint256, address, uint256) {
+    //     require(balanceOf(to) == 0, "Address already owns an NFT");
+    //     accountImplementation = Account(to);
+    //      // Ask this address if it is a Tokenbound
+    //     (uint256 chainId, address tokenContract, uint256 nftTokenId) = accountImplementation.token();
+    //     uint256 tokenId = _nextTokenId++;
+    //     _initCharacter(tokenId); // Creates new row in DB
+    //     _safeMint(to, tokenId); // tokenId is this Character token not owner nft
+    //     return (chainId, tokenContract, nftTokenId);
+    // }
 
-    function safeMint(address to) public {
+     function mintToTokenbound(address payable to) external {
         require(balanceOf(to) == 0, "Address already owns an NFT");
+        accountImplementation = Account(to);
+
+        // Check if caller is a Tokenbound account ERC-6551
+        // Reverts if this is not an Tokenbound
+        (uint256 chainId, address tokenContract, uint256 nftTokenId) = accountImplementation.token();
+        console.log("### NFT TOKEN ID of mint function caller", nftTokenId);
+        console.log("### Token Contract:", tokenContract);
+
         uint256 tokenId = _nextTokenId++;
-        _initCharacter(tokenId); // Creates new entry in DB // 🤔 add require?
-        _safeMint(to, tokenId);
+        _initCharacter(tokenId); // Creates new row in DB
+        _safeMint(to, tokenId); // tokenId is this Character token not owner nft
+        // return (chainId, tokenContract, nftTokenId);
     }
 
     function transferFrom(address from, address to, uint256 tokenId) public virtual override(ERC721, IERC721) {

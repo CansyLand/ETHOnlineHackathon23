@@ -18,6 +18,9 @@ import {BaseAccount as BaseERC4337Account, IEntryPoint, UserOperation} from "acc
 
 import "./interfaces/IAccountGuardian.sol";
 
+// Useful for debugging. Remove when deploying to a live network. ❌
+import "hardhat/console.sol";
+
 error NotAuthorized();
 error InvalidInput();
 error AccountLocked();
@@ -242,10 +245,19 @@ contract Account is
     /// @dev Returns the owner of the ERC-721 token which owns this account. By default, the owner
     /// of the token has full permissions on the account.
     function owner() public view returns (address) {
+        console.log("OWNER");
         (uint256 chainId, address tokenContract, uint256 tokenId) = token();
-
+        console.log("BLOCKCHAIN ID");
+        console.log(block.chainid);
+        console.log("CHAIN ID");
+        console.log(chainId);
+        console.log("TOKEN CONTRACT");
+        console.log(tokenContract);
+        console.log("TOKEN ID");
+        console.log(tokenId);
+        
         if (chainId != block.chainid) return address(0);
-
+        console.log("Everything is ok return");
         return IERC721(tokenContract).ownerOf(tokenId);
     }
 
@@ -301,16 +313,23 @@ contract Account is
         uint256 receivedTokenId,
         bytes memory
     ) public view override returns (bytes4) {
+
+        console.log("RECEIVING ERC721");
+
         _handleOverrideStatic();
 
-        (uint256 chainId, address tokenContract, uint256 tokenId) = token();
+        console.log("OVERRIDE IS DONE");
 
+        (uint256 chainId, address tokenContract, uint256 tokenId) = token();
+        console.log("TOKEN ID");
+        console.log(tokenId);
         if (
             chainId == block.chainid &&
             tokenContract == msg.sender &&
             tokenId == receivedTokenId
         ) revert OwnershipCycle();
 
+        console.log("IF STATEMENT IS OK");
         return this.onERC721Received.selector;
     }
 
@@ -417,13 +436,24 @@ contract Account is
 
     /// @dev Executes a low-level static call to the implementation if an override is set
     function _handleOverrideStatic() internal view {
-        address implementation = overrides[owner()][msg.sig];
+        // console.log("_HANDEL OVERRIDE STATIC");
+        // console.log(owner());
+        // console.log("No owner console.log?");
 
-        if (implementation != address(0)) {
-            bytes memory result = _callStatic(implementation, msg.data);
-            assembly {
-                return(add(result, 32), mload(result))
-            }
-        }
+        // address implementation = overrides[owner()][msg.sig];
+        // console.log("IMPLEMENTATION");
+        // console.log(implementation);
+
+        // if (implementation != address(0)) {
+        //     console.log("IMPLEMENTATION IS NOT 0");
+        //     bytes memory result = _callStatic(implementation, msg.data);
+        //     console.log("RESULT");
+        //     //console.log(result);
+        //     console.log("test");
+        //     assembly {
+        //         return(add(result, 32), mload(result))
+        //     }
+        // }
+        // console.log("IMPLEMENTATION IS 0");
     }
 }

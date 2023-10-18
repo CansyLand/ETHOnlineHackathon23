@@ -16,6 +16,15 @@ import {
  * @param config.functionName - name of the function to be called
  * @param config.args - args to be passed to the function call
  */
+
+// Extend UseScaffoldReadConfig to include a 'watch' option
+type ExtendedUseScaffoldReadConfig<
+  TContractName extends ContractName,
+  TFunctionName extends ExtractAbiFunctionNames<ContractAbi<TContractName>, "pure" | "view">,
+> = UseScaffoldReadConfig<TContractName, TFunctionName> & {
+  watch?: boolean;
+};
+
 export const useScaffoldContractRead = <
   TContractName extends ContractName,
   TFunctionName extends ExtractAbiFunctionNames<ContractAbi<TContractName>, "pure" | "view">,
@@ -23,8 +32,9 @@ export const useScaffoldContractRead = <
   contractName,
   functionName,
   args,
+  watch = true, // Default to true if watch is not provided
   ...readConfig
-}: UseScaffoldReadConfig<TContractName, TFunctionName>) => {
+}: ExtendedUseScaffoldReadConfig<TContractName, TFunctionName>) => {
   const { data: deployedContract } = useDeployedContractInfo(contractName);
 
   return useContractRead({
@@ -32,7 +42,7 @@ export const useScaffoldContractRead = <
     functionName,
     address: deployedContract?.address,
     abi: deployedContract?.abi,
-    watch: true,
+    watch, // Use the provided watch value
     args,
     enabled: !Array.isArray(args) || !args.some(arg => arg === undefined),
     ...(readConfig as any),
