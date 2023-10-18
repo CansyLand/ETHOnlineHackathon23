@@ -5,7 +5,7 @@ const contracts = {
       name: "localhost",
       contracts: {
         Account: {
-          address: "0xA0172f3184c79dBA27B9eA1BdD4BB32F5A274614",
+          address: "0xE979a64D375F5D363d7cecF3c93B9aFD40Ba9f55",
           abi: [
             {
               inputs: [
@@ -758,7 +758,7 @@ const contracts = {
           ],
         },
         AccountGuardian: {
-          address: "0xeBF8e40Ec41f566221f2586864512a85156a4547",
+          address: "0x9323d71E54CFFE145Ae15Ad711a5aD52255A7866",
           abi: [
             {
               anonymous: false,
@@ -966,7 +966,7 @@ const contracts = {
           ],
         },
         AccountProxy: {
-          address: "0xA4Ff036D715cE31f8eb9DE358344E7532563Cd79",
+          address: "0x5DA6D90630A282169BCe92735cC1E4aAF14c9c64",
           abi: [
             {
               inputs: [
@@ -1060,7 +1060,7 @@ const contracts = {
           ],
         },
         Character: {
-          address: "0xdF34A1E9D71B0Effc2ab6088ECE6793f57B3B678",
+          address: "0xe01c6c0E0997fa433357ec80BC21B1031CA7d4Cc",
           abi: [
             {
               inputs: [
@@ -1652,6 +1652,49 @@ const contracts = {
               inputs: [
                 {
                   internalType: "uint256",
+                  name: "index",
+                  type: "uint256",
+                },
+              ],
+              name: "tokenByIndex",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "owner",
+                  type: "address",
+                },
+                {
+                  internalType: "uint256",
+                  name: "index",
+                  type: "uint256",
+                },
+              ],
+              name: "tokenOfOwnerByIndex",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "uint256",
                   name: "tokenId",
                   type: "uint256",
                 },
@@ -1671,6 +1714,19 @@ const contracts = {
               inputs: [],
               name: "totalStaked",
               outputs: [],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "totalSupply",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
               stateMutability: "view",
               type: "function",
             },
@@ -1713,7 +1769,7 @@ const contracts = {
           ],
         },
         ERC6551Registry: {
-          address: "0xe461b434E5b05439124BCD66A93979a608b87B8d",
+          address: "0x1f5E9E9602bEb4D14c38952cB5504E4471E3328F",
           abi: [
             {
               inputs: [],
@@ -1849,7 +1905,7 @@ const contracts = {
           ],
         },
         EntryPoint: {
-          address: "0xAe64EbDbB89E698632c2cD5dDaCf2f74ec2086B7",
+          address: "0xBAb8e13DeF75a95321E9f48d3ec57f2c0141A6c3",
           abi: [
             {
               inputs: [
@@ -3161,7 +3217,7 @@ const contracts = {
           ],
         },
         FakeApeCoin: {
-          address: "0x4f0Faa1206a8083807CD3e78eB85d1aF4a07AbF0",
+          address: "0x7B31b399a224aD30D48838F55B41b6A6F1e033ED",
           abi: [
             {
               inputs: [],
@@ -3651,7 +3707,7 @@ const contracts = {
           ],
         },
         GenericNFT: {
-          address: "0x3220E0128f08C731B0D7187D67273bBFA6e91cF9",
+          address: "0x0bca6353f80bBe401233d5Ed7732cEACEb13bc88",
           abi: [
             {
               inputs: [
@@ -4176,7 +4232,7 @@ const contracts = {
           ],
         },
         Staking: {
-          address: "0xd7f32f37A5C091713e4ECBeD46437F2927ec502E",
+          address: "0x47690CC4C0c91be612A643D85195F4D57488dE97",
           abi: [
             {
               inputs: [
@@ -4288,7 +4344,7 @@ const contracts = {
           ],
         },
         Tableland: {
-          address: "0x1eB9d26f1fBa63F64777067dd9e4F822AAd81178",
+          address: "0x25886F0713d1831991e1b9efF2798d68a9335293",
           abi: [
             {
               inputs: [
@@ -4370,7 +4426,7 @@ const contracts = {
           ],
         },
         YourContract: {
-          address: "0xd1970870abc5ac95457486b9CC4Fdf8615454445",
+          address: "0xf282a3C68A2505a79Fc99f94CE43D9c83230CaE5",
           abi: [
             {
               inputs: [

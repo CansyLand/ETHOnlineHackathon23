@@ -18,7 +18,7 @@ import {
  */
 
 // Extend UseScaffoldReadConfig to include a 'watch' option
-type ExtendedUseScaffoldReadConfig<
+export type ExtendedUseScaffoldReadConfig<
   TContractName extends ContractName,
   TFunctionName extends ExtractAbiFunctionNames<ContractAbi<TContractName>, "pure" | "view">,
 > = UseScaffoldReadConfig<TContractName, TFunctionName> & {

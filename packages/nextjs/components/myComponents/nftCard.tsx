@@ -1,19 +1,19 @@
 // import React, { useMemo } from 'react';
-// import { Database } from "@tableland/sdk";
 import { Address } from "../scaffold-eth";
 import { useDeployedContractInfo, useScaffoldContractRead, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
+import useFetchCharacter from "~~/hooks/tableland/useFetchCharacter";
 
 // import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query'
 
 // const queryClient = new QueryClient()
 
 const NftCard = ({ tokenIndex, tokenAddress }: { tokenIndex: bigint; tokenAddress: string }) => {
-  // Get token ID
+  // Get token ID of Parent NFT
   const { data: tokenId } = useScaffoldContractRead({
     contractName: "GenericNFT",
     functionName: "tokenOfOwnerByIndex",
     args: [tokenAddress, tokenIndex],
-    watch: false,
+    watch: true,
   });
 
   // Get Image URI
@@ -24,10 +24,7 @@ const NftCard = ({ tokenIndex, tokenAddress }: { tokenIndex: bigint; tokenAddres
     watch: false,
   });
 
-  // Get RPG Character Statistics
-  //
-
-  // Figure out wallet address
+  // Figure out wallet tokenbound address
   const { data: accountImplementation } = useDeployedContractInfo("Account");
   const { data: TBAaddress } = useScaffoldContractRead({
     contractName: "ERC6551Registry",
@@ -42,29 +39,13 @@ const NftCard = ({ tokenIndex, tokenAddress }: { tokenIndex: bigint; tokenAddres
     args: [TBAaddress],
   });
 
-  // If Tokenbound account holds RPG NFT get tokenId
+  // Get RPG Character Statistics
+  console.log("Token ID", tokenId);
+  const characterStats = useFetchCharacter(balance, TBAaddress);
+  // const { Character } = useFetchCharacter(balance, TBAaddress);
+  console.log(characterStats);
 
-  // Get Tableland data
-  const { data: tableId } = useScaffoldContractRead({
-    contractName: "Character",
-    functionName: "tableId",
-  });
-
-  const tableName: string = "c_31337_" + tableId;
-  // interface Character {
-  //     i: number;
-  //     x: number;
-  //     s: number;
-  //     e: number;
-  //     w: number;
-  //     l: number;
-  //   }
-  console.log("tableName:", tableName);
-  // const db: Database<Character> = new Database();
-  // const { results } = await db.prepare(`SELECT * FROM ${tableName};`).all();
-  // console.log(results);
-  // character = results;
-  // http://localhost:8080/api/v1/query?statement=select%20x%20i%20from%20c_31337_9
+  // Following hooks fired onClick
 
   // Mint Soulbound character token to Tokenbound account
   const { writeAsync: mintCharacter } = useScaffoldContractWrite({
@@ -94,33 +75,60 @@ const NftCard = ({ tokenIndex, tokenAddress }: { tokenIndex: bigint; tokenAddres
   function initCharacter() {
     createTokenboundAccount();
   }
-  // ❌✅❌✅❌✅❌✅❌✅❌✅
-  // Warning: Using `<img>` could result in slower LCP and higher bandwidth.
-  // Use `<Image />` from `next/image` instead to utilize Image Optimization.
-  // See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
   return balance == 1n ? (
-    <div className="card card-side bg-base-100 shadow-xl">
+    <div className="card  bg-base-100 shadow-xl">
       <figure>
-        <img src={uri} alt="PFP" />
+        <img src={uri} alt="pfp-nft" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">#{tokenId?.toString()}</h2>
         <Address address={TBAaddress} />
-        <div className="card-actions justify-end">
-          <button className="btn btn-warning">Select</button>
+        <div className="overflow-x-auto">
+          <table className="table">
+            <tbody>
+              <tr>
+                <th>id:</th>
+                <td>{characterStats?.i}</td>
+              </tr>
+              <tr>
+                <th>xp:</th>
+                <td>{characterStats?.x}</td>
+              </tr>
+              <tr>
+                <th>strength</th>
+                <td>{characterStats?.s}</td>
+              </tr>
+              <tr>
+                <th>endurance:</th>
+                <td>{characterStats?.e}</td>
+              </tr>
+              <tr>
+                <th>wins:</th>
+                <td>{characterStats?.w}</td>
+              </tr>
+              <tr>
+                <th>losses:</th>
+                <td>{characterStats?.l}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div className="card-actions">
+          <button className="btn btn-primary w-full">Play</button>
         </div>
       </div>
     </div>
   ) : (
-    <div className="card card-side bg-base-100 shadow-xl">
+    <div className="card bg-base-100 shadow-xl">
       <figure>
-        <img src={uri} alt="PFP" />
+        <img src={uri} alt="Shoes" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">#{tokenId?.toString()}</h2>
         <Address address={TBAaddress} />
-        <div className="card-actions justify-end">
-          <button className="btn btn-active btn-primary" onClick={initCharacter}>
+        <div className="card-actions">
+          <button className="btn btn-active btn-primary w-full" onClick={initCharacter}>
             Recruit
           </button>
         </div>
