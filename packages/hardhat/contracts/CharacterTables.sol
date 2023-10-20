@@ -97,11 +97,20 @@ contract CharacterTables is ERC721Holder {
             _tableId,
             "i,x,s,e,w,l",
             string.concat(
-                Strings.toString(tokenId), // Convert to a string
-                ",0,3,3,0,0"
+                Strings.toString(tokenId), ",", // Convert to a string
+                Strings.toString(getRandomNumber(20, 100)), ",", // XP
+                Strings.toString(getRandomNumber(1,10)), ",", // strength
+                Strings.toString(getRandomNumber(3,6)), ",", // endurance
+                "0,0"
                 )
             )
         );
+    }
+
+    function getRandomNumber(uint8 min, uint8 max) public view returns (uint8) {
+        uint256 randomHash = uint256(keccak256(abi.encodePacked(block.timestamp, block.difficulty)));
+        uint8 randomValue = uint8(randomHash % max) + min;  // This will give a number between min and max
+        return randomValue;
     }
 
     function _updateCharacter(

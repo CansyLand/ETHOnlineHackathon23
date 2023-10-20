@@ -1,5 +1,7 @@
 // import React, { useMemo } from 'react';
+import { useState } from "react";
 import { Address } from "../scaffold-eth";
+import BoosterPack from "./boosterPack";
 import { useDeployedContractInfo, useScaffoldContractRead, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 import useFetchCharacter from "~~/hooks/tableland/useFetchCharacter";
 
@@ -76,32 +78,61 @@ const NftCard = ({ tokenIndex, tokenAddress }: { tokenIndex: bigint; tokenAddres
     createTokenboundAccount();
   }
 
+  const [boosterPackIsMinted, setBoosterPackIsMinted] = useState<boolean | null>(null);
+
+  const handleDataFromChild = (value: boolean) => {
+    setBoosterPackIsMinted(value);
+  };
+
+  function calculateStats(val: number | undefined) {
+    if (!val) return;
+    if (boosterPackIsMinted) {
+      // return "+" + (val + getRandomInt(1,10) )
+      return "+" + Math.floor(val * 1.8);
+    } else {
+      return val;
+    }
+  }
+
   return balance == 1n ? (
     <div className="card  bg-base-100 shadow-xl">
-      <figure>
-        <img src={uri} alt="pfp-nft" />
+      <figure className="relative">
+        <img src={uri} alt="pfp-nft" className="w-full" />{" "}
+        {/* Ensure the image takes the full width of its container */}
+        <div className="absolute top-0 left-0 p-2 bg-black bg-opacity-50">
+          <h2 className="card-title">#{tokenId?.toString()}</h2>
+        </div>
+        <div className="absolute bottom-0 right-0 p-2 bg-black bg-opacity-50">
+          {" "}
+          {/* This div will be positioned at the bottom right of the image */}
+          <Address address={TBAaddress} />
+        </div>
       </figure>
+
       <div className="card-body">
-        <h2 className="card-title">#{tokenId?.toString()}</h2>
-        <Address address={TBAaddress} />
+        <BoosterPack TBAaddress={TBAaddress} sendDataToParent={handleDataFromChild} />
         <div className="overflow-x-auto">
           <table className="table">
             <tbody>
-              <tr>
+              {/* <tr>
                 <th>id:</th>
                 <td>{characterStats?.i}</td>
-              </tr>
+              </tr> */}
               <tr>
                 <th>xp:</th>
                 <td>{characterStats?.x}</td>
               </tr>
               <tr>
                 <th>strength</th>
-                <td>{characterStats?.s}</td>
+                <td className={`${boosterPackIsMinted ? "text-green-500 font-bold" : ""}`}>
+                  {calculateStats(characterStats?.s)}
+                </td>
               </tr>
               <tr>
                 <th>endurance:</th>
-                <td>{characterStats?.e}</td>
+                <td className={`${boosterPackIsMinted ? "text-green-500 font-bold" : ""}`}>
+                  {calculateStats(characterStats?.e)}
+                </td>
               </tr>
               <tr>
                 <th>wins:</th>
@@ -121,12 +152,19 @@ const NftCard = ({ tokenIndex, tokenAddress }: { tokenIndex: bigint; tokenAddres
     </div>
   ) : (
     <div className="card bg-base-100 shadow-xl">
-      <figure>
-        <img src={uri} alt="Shoes" />
+      <figure className="relative">
+        <img src={uri} alt="pfp-nft" className="w-full" />{" "}
+        {/* Ensure the image takes the full width of its container */}
+        <div className="absolute top-0 left-0 p-2 bg-black bg-opacity-50">
+          <h2 className="card-title">#{tokenId?.toString()}</h2>
+        </div>
+        <div className="absolute bottom-0 right-0 p-2 bg-black bg-opacity-50">
+          {" "}
+          {/* This div will be positioned at the bottom right of the image */}
+          <Address address={TBAaddress} />
+        </div>
       </figure>
       <div className="card-body">
-        <h2 className="card-title">#{tokenId?.toString()}</h2>
-        <Address address={TBAaddress} />
         <div className="card-actions">
           <button className="btn btn-active btn-primary w-full" onClick={initCharacter}>
             Recruit

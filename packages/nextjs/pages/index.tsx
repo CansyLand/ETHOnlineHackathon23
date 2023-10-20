@@ -12,6 +12,15 @@ import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
 
 //  Read and display RPG stats ✅
 
+//  Items contract
+//  Mint Booster Items
+//  Place inside Wallet
+//  Display wallet content 🤏 if address owns more than 0 disolay table
+
+// sustinable rewards system
+// decentralize arenas
+
+//  items table mint
 //  Display NFTs items
 //  Select 6 items
 //  Send NFT to arena

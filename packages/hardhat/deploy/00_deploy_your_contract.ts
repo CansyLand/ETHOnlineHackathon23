@@ -29,7 +29,7 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   const [/*owner, feeCollector,*/ operator] = await ethers.getSigners();
 
   // Send funs to burner walltes
-  const burnerWallets = ["0x3497ED4B61FC3006feAD44a9Fc6e306fe05Ea7fF"];
+  const burnerWallets = ["0x3497ED4B61FC3006feAD44a9Fc6e306fe05Ea7fF", "0x33a7d139955c1B34033Fa5187D752AF986Eace9e"];
   console.log("Send ETH to burner wallets 💸");
   burnerWallets.forEach(async address => {
     await operator.sendTransaction({
@@ -94,6 +94,12 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
     // args: ["0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC"],
     from: myDeployer,
     args: [myDeployer],
+    log: true,
+    autoMine: true,
+  });
+
+  await deploy("ItemsNFT", {
+    from: myDeployer,
     log: true,
     autoMine: true,
   });
