@@ -5,7 +5,7 @@ const contracts = {
       name: "localhost",
       contracts: {
         Account: {
-          address: "0xf91Be48a9485EE449735c522694B8B9EAB7376E5",
+          address: "0x2aD7753d3A0f9b14e82AE37b49dCC8DdC66Ef236",
           abi: [
             {
               inputs: [
@@ -758,7 +758,7 @@ const contracts = {
           ],
         },
         AccountGuardian: {
-          address: "0xd771f0a159f3186A119F3C0CF7b25256c5c622f4",
+          address: "0x07AF11e412ed7C343603c0F4b35645f7870686Eb",
           abi: [
             {
               anonymous: false,
@@ -966,7 +966,7 @@ const contracts = {
           ],
         },
         AccountProxy: {
-          address: "0x1AC9eccD48c7399845Bf49e7FcDa6Ade33E71418",
+          address: "0x36C77CC277e73CCcd199d1989828739722Fe5450",
           abi: [
             {
               inputs: [
@@ -1060,7 +1060,7 @@ const contracts = {
           ],
         },
         Character: {
-          address: "0xDE55dDe0eC472f03154a389F1B6389Af53D83292",
+          address: "0x1696C7203769A71c97Ca725d42b13270ee493526",
           abi: [
             {
               inputs: [
@@ -1793,7 +1793,7 @@ const contracts = {
           ],
         },
         ERC6551Registry: {
-          address: "0x6E757C04Dcf764f7b06AFC428eD75773CDAC7fDc",
+          address: "0x37cA242a94945CdC3d3F155452a82Af6374bebD7",
           abi: [
             {
               inputs: [],
@@ -1929,7 +1929,7 @@ const contracts = {
           ],
         },
         EntryPoint: {
-          address: "0x453fF3710976F71197DF2059267DeC04Ad59B3Df",
+          address: "0xEF86CEc1CEf0C78E5725fA6Cc3E9929788bBde35",
           abi: [
             {
               inputs: [
@@ -3241,7 +3241,7 @@ const contracts = {
           ],
         },
         FakeApeCoin: {
-          address: "0x17212C981DDE91ba4b68DcE07AdCd2D3D281e97E",
+          address: "0x39dD11C243Ac4Ac250980FA3AEa016f73C509f37",
           abi: [
             {
               inputs: [],
@@ -3731,7 +3731,7 @@ const contracts = {
           ],
         },
         GenericNFT: {
-          address: "0x1766714C3E8D0DC2A75748E8007D8631F330D832",
+          address: "0x332Fb35767182F8ac9F9C1405db626105F6694E0",
           abi: [
             {
               inputs: [
@@ -4256,7 +4256,7 @@ const contracts = {
           ],
         },
         ItemsNFT: {
-          address: "0x2C8213444a853C5a546953447D27AF00FD80e993",
+          address: "0x982830D87C95479dB81Fe62cd08dd9118D080697",
           abi: [
             {
               inputs: [],
@@ -4710,7 +4710,7 @@ const contracts = {
           ],
         },
         Staking: {
-          address: "0xcE8656c92f84783E1F1E76a5801C7162399D20e0",
+          address: "0x76ca03a67C049477FfB09694dFeF00416dB69746",
           abi: [
             {
               inputs: [
@@ -4822,7 +4822,7 @@ const contracts = {
           ],
         },
         Tableland: {
-          address: "0x88782f69E44da37A4fd7B95f64bAf58661e6601A",
+          address: "0xd829fcDDD9C9c7c50B7cB476596Ef0ff5889D543",
           abi: [
             {
               inputs: [
@@ -4904,7 +4904,7 @@ const contracts = {
           ],
         },
         YourContract: {
-          address: "0xE1CB2DbaB6b6feFe34B2AaA47b83EeE79E8D36f8",
+          address: "0xef11D1c2aA48826D4c41e54ab82D1Ff5Ad8A64Ca",
           abi: [
             {
               inputs: [
